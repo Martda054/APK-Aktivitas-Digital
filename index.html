@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aktivitas Digital - Platform Kolaborasi Editor & Customer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22Aktivitas%20Digital%22%2C%22short_name%22%3A%22AktDigital%22%2C%22start_url%22%3A%22%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%237c3aed%22%2C%22theme_color%22%3A%22%237c3aed%22%2C%22icons%22%3A%5B%5D%7D">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="h-full bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 overflow-x-hidden">
+
+    <!-- GLOBAL TOP NAVBAR -->
+    <header class="h-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-6 sticky top-0 z-40">
+        <div class="flex items-center gap-3 cursor-pointer" onclick="goHome()">
+            <div class="w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold shadow-md shadow-brand-500/20">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
+            <div>
+                <h1 class="font-bold text-sm md:text-base leading-tight">Aktivitas Digital</h1>
+                <span class="text-[10px] text-brand-600 dark:text-brand-400 font-semibold uppercase tracking-wider">Collab Platform</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-3">
+            <button onclick="toggleDarkMode()" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
+                <i id="theme-icon" class="fa-solid fa-moon"></i>
+            </button>
+            <div id="user-badge-container" class="hidden items-center gap-2 pl-2 border-l border-slate-200 dark:border-slate-800">
+                <span id="current-user-name" class="text-xs font-semibold"></span>
+                <button onclick="logoutSession()" class="px-3 py-1.5 rounded-lg bg-rose-50 dark:bg-rose-950/30 text-rose-600 text-xs font-semibold hover:bg-rose-100 transition-all">Keluar</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-7xl mx-auto p-4 md:p-8 min-h-[calc(100vh-4rem)] flex flex-col">
+
+        <!-- VIEW 1: ROLE SELECTOR (Tampilan Pertama 2 Card) -->
+        <div id="view-role-selector" class="flex-1 flex flex-col items-center justify-center py-12">
+            <div class="text-center max-w-xl mb-10">
+                <span class="px-3.5 py-1.5 rounded-full bg-brand-50 dark:bg-brand-950/50 text-brand-600 dark:text-brand-400 text-xs font-semibold uppercase tracking-wider mb-3 inline-block">Selamat Datang</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-3">Pilih Peran Anda untuk Memulai</h2>
+                <p class="text-sm md:text-base text-slate-500 dark:text-slate-400">Silakan pilih apakah Anda ingin masuk sebagai Editor kreatif atau Customer yang mencari layanan proyek digital.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl">
+                <!-- Card Editor -->
+                <div onclick="selectRole('editor')" class="group p-8 bg-white dark:bg-slate-900 rounded-3xl border-2 border-slate-200 dark:border-slate-800 hover:border-brand-500 dark:hover:border-brand-500 shadow-sm hover:shadow-xl transition-all cursor-pointer flex flex-col items-center text-center">
+                    <div class="w-20 h-20 rounded-2xl bg-brand-50 dark:bg-brand-900/30 text-brand-600 flex items-center justify-center text-3xl font-bold mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Editor</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Akses dashboard pesanan umum, lihat proyek masuk dari semua customer, terima tugas, dan berdiskusi.</p>
+                    <span class="px-6 py-3 rounded-xl bg-brand-600 text-white font-semibold text-sm group-hover:bg-brand-700 transition-all shadow-md shadow-brand-500/20">Masuk sebagai Editor</span>
+                </div>
+                <!-- Card Customer -->
+                <div onclick="selectRole('customer')" class="group p-8 bg-white dark:bg-slate-900 rounded-3xl border-2 border-slate-200 dark:border-slate-800 hover:border-emerald-500 dark:hover:border-emerald-500 shadow-sm hover:shadow-xl transition-all cursor-pointer flex flex-col items-center text-center">
+                    <div class="w-20 h-20 rounded-2xl bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 flex items-center justify-center text-3xl font-bold mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Customer</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Jelajahi portofolio editor, pilih editor favorit, ajukan proyek baru, dan pantau progres diskusi.</p>
+                    <span class="px-6 py-3 rounded-xl bg-emerald-600 text-white font-semibold text-sm group-hover:bg-emerald-700 transition-all shadow-md shadow-emerald-500/20">Masuk sebagai Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 2: AUTH MODAL / FORM (Login / Register Peran) -->
+        <div id="view-auth" class="flex-1 flex items-center justify-center py-10 hidden">
+            <div class="w-full max-w-md p-8 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl">
+                <div class="text-center mb-6">
+                    <button onclick="goHome()" class="text-xs text-slate-400 hover:text-brand-600 mb-4 inline-flex items-center gap-1"><i class="fa-solid fa-arrow-left"></i> Kembali Pilih Peran</button>
+                    <div id="auth-role-icon" class="w-14 h-14 rounded-2xl bg-brand-600 text-white text-2xl font-bold flex items-center justify-center mx-auto mb-3 shadow-lg">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <h3 id="auth-title" class="text-2xl font-bold">Autentikasi</h3>
+                    <p id="auth-subtitle" class="text-sm text-slate-500 mt-1">Masuk atau daftar untuk melanjutkan</p>
+                </div>
+
+                <form id="form-auth" onsubmit="handleAuthSubmit(event)" class="space-y-4">
+                    <div id="field-name-container" class="hidden">
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Nama Lengkap</label>
+                        <input type="text" id="auth-name" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Email</label>
+                        <input type="email" id="auth-email" required class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Password</label>
+                        <input type="password" id="auth-password" required minlength="6" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    </div>
+                    <p id="auth-error" class="text-xs text-rose-500 hidden"></p>
+                    <button type="submit" id="auth-submit-btn" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl shadow-lg transition-all text-sm">Masuk</button>
+                </form>
+                <div class="text-center mt-6 text-sm text-slate-500">
+                    <span id="auth-switch-text">Belum punya akun?</span> 
+                    <button onclick="toggleAuthMode()" id="auth-switch-btn" class="text-brand-600 font-semibold hover:underline ml-1">Daftar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 3: EDITOR DASHBOARD (Dashboard Pesanan Bersama & Chat) -->
+        <div id="view-editor-dashboard" class="flex-1 flex flex-col space-y-6 hidden">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div>
+                    <span class="px-3 py-1 rounded-md bg-brand-50 dark:bg-brand-950/50 text-brand-600 dark:text-brand-400 text-xs font-semibold uppercase tracking-wider">Dashboard Editor Bersama</span>
+                    <h2 class="text-2xl font-bold mt-1">Daftar Proyek Masuk</h2>
+                    <p class="text-sm text-slate-500">Semua pesanan dari customer tampil di sini agar dapat dilihat dan dikelola bersama oleh para editor.</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="px-4 py-2 bg-brand-50 dark:bg-brand-950/30 rounded-xl text-center">
+                        <span class="block text-xs text-slate-500">Total Proyek</span>
+                        <span id="editor-order-count" class="text-lg font-bold text-brand-600">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+                <div class="lg:col-span-1 space-y-4">
+                    <h3 class="font-bold text-base">Antrean Proyek</h3>
+                    <div id="editor-orders-list" class="space-y-3">
+                        <!-- Rendered via JS -->
+                    </div>
+                </div>
+                <div class="lg:col-span-2 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 flex flex-col h-[550px]">
+                    <div id="editor-active-project-container" class="flex-1 flex flex-col h-full">
+                        <div class="text-center my-auto text-slate-400">
+                            <i class="fa-solid fa-comments text-4xl mb-3"></i>
+                            <p class="text-sm">Pilih proyek di sebelah kiri untuk melihat detail dan mulai chat.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 4: CUSTOMER PORTFOLIO & PROJECT MAKER -->
+        <div id="view-customer-dashboard" class="flex-1 flex flex-col space-y-6 hidden">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div>
+                    <span class="px-3 py-1 rounded-md bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 text-xs font-semibold uppercase tracking-wider">Portal Customer</span>
+                    <h2 class="text-2xl font-bold mt-1" id="customer-header-title">Portofolio Editor</h2>
+                    <p class="text-sm text-slate-500" id="customer-header-desc">Pilih editor profesional pilihan Anda dan ajukan proyek baru dengan mudah.</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="switchCustomerTab('portfolio')" id="btn-tab-portfolio" class="px-4 py-2 bg-emerald-600 text-white rounded-xl text-xs font-semibold shadow-md transition-all">
+                        <i class="fa-solid fa-users mr-1"></i> Pilih Editor
+                    </button>
+                    <button onclick="switchCustomerTab('projects')" id="btn-tab-projects" class="px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 rounded-xl text-xs font-semibold transition-all">
+                        <i class="fa-solid fa-folder-open mr-1"></i> Proyek Saya
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab 1: Portofolio Editor -->
+            <div id="customer-tab-portfolio" class="space-y-6">
+                <h3 class="font-bold text-base">Daftar Editor Profesional</h3>
+                <div id="editors-portfolio-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Rendered Editors -->
+                </div>
+            </div>
+
+            <!-- Tab 2: Proyek & Chat Customer -->
+            <div id="customer-tab-projects" class="space-y-6 hidden">
+                <h3 class="font-bold text-base">Proyek & Ruang Chat Anda</h3>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+                    <div class="lg:col-span-1 space-y-3" id="customer-orders-list">
+                        <!-- Rendered Customer Projects -->
+                    </div>
+                    <div class="lg:col-span-2 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 flex flex-col h-[550px]" id="customer-active-project-container">
+                        <div class="text-center my-auto text-slate-400">
+                            <i class="fa-solid fa-comments text-4xl mb-3"></i>
+                            <p class="text-sm">Pilih proyek Anda untuk melihat status dan melakukan chat dengan editor.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- MODAL: BUAT PROYEK BARU -->
+    <div id="modal-create-project" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 backdrop-blur-sm hidden">
+        <div class="w-full max-w-lg p-8 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl m-4">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-bold">Ajukan Proyek ke Editor</h3>
+                <button onclick="closeProjectModal()" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:bg-rose-50 hover:text-rose-600 transition-all flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form onsubmit="submitNewProject(event)" class="space-y-4">
+                <input type="hidden" id="modal-editor-email">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Editor Dipilih</label>
+                    <input type="text" id="modal-editor-name" disabled class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800/50 text-sm font-semibold">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Judul Proyek</label>
+                    <input type="text" id="proj-title" required placeholder="Contoh: Edit Video Reels Instagram Brand" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Kategori Layanan</label>
+                    <select id="proj-category" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        <option value="Kampanye Media Sosial">Kampanye Media Sosial</option>
+                        <option value="Video Editing & Reels">Video Editing & Reels</option>
+                        <option value="Analisis Insight Pelanggan">Analisis Insight Pelanggan</option>
+                        <option value="Copywriting & Ad Scripts">Copywriting & Ad Scripts</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Deskripsi / Detail Kebutuhan</label>
+                    <textarea id="proj-desc" rows="4" required placeholder="Jelaskan detail brief proyek Anda..." class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"></textarea>
+                </div>
+                <button type="submit" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl shadow-lg transition-all text-sm">Kirim Pengajuan Proyek</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCRIPT UTAMA APLIKASI -->
+    <script>
+        // Data Mock Editor Portofolio
+        const MOCK_EDITORS = [
+            { email: 'editor1@aktivitasdigital.id', name: 'Rian Pratama', role: 'Senior Video & Social Media Editor', rating: '4.9 (48 Proyek)', avatar: 'RP', desc: 'Spesialis penyuntingan video reels, TikTok kampanye brand, dan manajemen konten visual organik.', portfolio: ['Reels Instagram Brand Kuliner', 'TikTok Campaign Tech Gadget', 'YouTube Intro Animation'] },
+            { email: 'editor2@aktivitasdigital.id', name: 'Siti Rahma', role: 'Data Analyst & Content Strategist', rating: '4.8 (36 Proyek)', avatar: 'SR', desc: 'Ahli rekapitulasi data pesan langsung pelanggan, analisis tren insight, dan strategi pemasaran digital.', portfolio: ['Customer Trend Report UMKM', 'Market Research E-Commerce', 'Social Media Analytics Dashboard'] },
+            { email: 'editor3@aktivitasdigital.id', name: 'Dimas Anggara', role: 'Copywriter & Ad Script Specialist', rating: '5.0 (52 Proyek)', avatar: 'DA', desc: 'Berpengalaman menyusun naskah iklan komersial, caption media sosial, dan copywriting produk teknologi.', portfolio: ['Ad Script Samsung Series', 'Copywriting Campaign Retail', 'Interactive Storyboard Script'] }
+        ];
+
+        // State Aplikasi
+        let currentRole = null;
+        let isRegisterMode = false;
+        let activeUser = null;
+        let activeChatProjectId = null;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                document.getElementById('theme-icon').className = 'fa-solid fa-sun';
+            }
+
+            const session = localStorage.getItem('akt_session');
+            if (session) {
+                const data = JSON.parse(session);
+                currentRole = data.role;
+                activeUser = data.user;
+                initAppScreen();
+            }
+
+            if ('serviceWorker' in navigator) {
+                const swCode = `
+                    self.addEventListener('install', e => { e.waitUntil(caches.open('akt-v1').then(c => c.addAll(['./']))); });
+                    self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then(res => res || fetch(e.request))); });
+                `;
+                const blob = new Blob([swCode], { type: 'text/javascript' });
+                navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(err => console.log('SW error:', err));
+            }
+        });
+
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                document.getElementById('theme-icon').className = 'fa-solid fa-moon';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                document.getElementById('theme-icon').className = 'fa-solid fa-sun';
+            }
+        }
+
+        function selectRole(role) {
+            currentRole = role;
+            isRegisterMode = false;
+            document.getElementById('view-role-selector').classList.add('hidden');
+            document.getElementById('view-auth').classList.remove('hidden');
+
+            const iconEl = document.getElementById('auth-role-icon');
+            const titleEl = document.getElementById('auth-title');
+            const subtitleEl = document.getElementById('auth-subtitle');
+            const nameContainer = document.getElementById('field-name-container');
+
+            if (role === 'editor') {
+                iconEl.className = 'w-14 h-14 rounded-2xl bg-brand-600 text-white text-2xl font-bold flex items-center justify-center mx-auto mb-3 shadow-lg';
+                iconEl.innerHTML = '<i class="fa-solid fa-laptop-code"></i>';
+                titleEl.textContent = 'Portal Editor';
+            } else {
+                iconEl.className = 'w-14 h-14 rounded-2xl bg-emerald-600 text-white text-2xl font-bold flex items-center justify-center mx-auto mb-3 shadow-lg';
+                iconEl.innerHTML = '<i class="fa-solid fa-briefcase"></i>';
+                titleEl.textContent = 'Portal Customer';
+            }
+            subtitleEl.textContent = 'Masuk ke akun Anda';
+            nameContainer.classList.add('hidden');
+            document.getElementById('auth-switch-text').textContent = 'Belum punya akun?';
+            document.getElementById('auth-switch-btn').textContent = 'Daftar';
+            document.getElementById('auth-submit-btn').textContent = 'Masuk';
+            document.getElementById('form-auth').reset();
+        }
+
+        function toggleAuthMode() {
+            isRegisterMode = !isRegisterMode;
+            const nameContainer = document.getElementById('field-name-container');
+            const subtitleEl = document.getElementById('auth-subtitle');
+            const submitBtn = document.getElementById('auth-submit-btn');
+
+            if (isRegisterMode) {
+                nameContainer.classList.remove('hidden');
+                subtitleEl.textContent = 'Daftar akun baru';
+                submitBtn.textContent = 'Daftar Akun';
+                document.getElementById('auth-switch-text').textContent = 'Sudah punya akun?';
+                document.getElementById('auth-switch-btn').textContent = 'Masuk';
+            } else {
+                nameContainer.classList.add('hidden');
+                subtitleEl.textContent = 'Masuk ke akun Anda';
+                submitBtn.textContent = 'Masuk';
+                document.getElementById('auth-switch-text').textContent = 'Belum punya akun?';
+                document.getElementById('auth-switch-btn').textContent = 'Daftar';
+            }
+        }
+
+        function goHome() {
+            currentRole = null;
+            activeUser = null;
+            document.getElementById('view-auth').classList.add('hidden');
+            document.getElementById('view-editor-dashboard').classList.add('hidden');
+            document.getElementById('view-customer-dashboard').classList.add('hidden');
+            document.getElementById('view-role-selector').classList.remove('hidden');
+            document.getElementById('user-badge-container').classList.add('hidden');
+        }
+
+        function handleAuthSubmit(e) {
+            e.preventDefault();
+            const email = document.getElementById('auth-email').value;
+            const password = document.getElementById('auth-password').value;
+            const name = document.getElementById('auth-name').value;
+            const errEl = document.getElementById('auth-error');
+
+            let users = JSON.parse(localStorage.getItem(`akt_users_${currentRole}`) || '[]');
+
+            if (isRegisterMode) {
+                if (users.some(u => u.email === email)) {
+                    errEl.textContent = 'Email sudah terdaftar pada peran ini.';
+                    errEl.classList.remove('hidden');
+                    return;
+                }
+                const newUser = { name, email, password };
+                users.push(newUser);
+                localStorage.setItem(`akt_users_${currentRole}`, JSON.stringify(users));
+                alert('Registrasi berhasil! Silakan masuk.');
+                toggleAuthMode();
+                return;
+            }
+
+            let foundUser = users.find(u => u.email === email && u.password === password);
+            if (!foundUser && currentRole === 'editor') {
+                const mock = MOCK_EDITORS.find(m => m.email === email);
+                if (mock) foundUser = { name: mock.name, email: mock.email };
+            }
+
+            if (!foundUser) {
+                errEl.textContent = 'Email atau password salah.';
+                errEl.classList.remove('hidden');
+                return;
+            }
+
+            activeUser = foundUser;
+            localStorage.setItem('akt_session', JSON.stringify({ role: currentRole, user: activeUser }));
+            initAppScreen();
+        }
+
+        function initAppScreen() {
+            document.getElementById('view-role-selector').classList.add('hidden');
+            document.getElementById('view-auth').classList.add('hidden');
+            document.getElementById('user-badge-container').classList.remove('hidden');
+            document.getElementById('current-user-name').textContent = `${activeUser.name} (${currentRole.toUpperCase()})`;
+
+            if (currentRole === 'editor') {
+                document.getElementById('view-editor-dashboard').classList.remove('hidden');
+                renderEditorDashboard();
+            } else {
+                document.getElementById('view-customer-dashboard').classList.remove('hidden');
+                renderCustomerPortfolio();
+                switchCustomerTab('portfolio');
+            }
+        }
+
+        function logoutSession() {
+            localStorage.removeItem('akt_session');
+            goHome();
+        }
+
+        // Proyek Storage (Dashboard Bersama)
+        function getProjects() {
+            return JSON.parse(localStorage.getItem('akt_shared_projects') || '[]');
+        }
+
+        function saveProjects(projects) {
+            localStorage.setItem('akt_shared_projects', JSON.stringify(projects));
+        }
+
+        // --- EDITOR DASHBOARD BERSAMA ---
+        function renderEditorDashboard() {
+            const projects = getProjects();
+            document.getElementById('editor-order-count').textContent = projects.length;
+
+            const listEl = document.getElementById('editor-orders-list');
+            if (projects.length === 0) {
+                listEl.innerHTML = `<div class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 text-center text-xs text-slate-400">Belum ada proyek masuk dari customer.</div>`;
+                return;
+            }
+
+            listEl.innerHTML = projects.map(p => `
+                <div onclick="selectEditorProject('${p.id}')" class="p-4 bg-white dark:bg-slate-900 rounded-2xl border ${activeChatProjectId === p.id ? 'border-brand-500 shadow-md' : 'border-slate-200 dark:border-slate-800'} cursor-pointer hover:border-brand-500 transition-all">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${p.status === 'Diterima' ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'}">${p.status}</span>
+                        <span class="text-[10px] text-slate-400">${p.date}</span>
+                    </div>
+                    <h4 class="font-bold text-sm mb-1">${p.title}</h4>
+                    <p class="text-xs text-slate-500 truncate">Customer: ${p.customerName} | Target Editor: ${p.targetEditorName}</p>
+                </div>
+            `).join('');
+
+            if (activeChatProjectId) {
+                renderChatRoom(activeChatProjectId, 'editor-active-project-container');
+            }
+        }
+
+        function selectEditorProject(id) {
+            activeChatProjectId = id;
+            renderEditorDashboard();
+        }
+
+        function acceptProject(id) {
+            let projects = getProjects();
+            const idx = projects.findIndex(p => p.id === id);
+            if (idx !== -1) {
+                projects[idx].status = 'Diterima';
+                projects[idx].acceptedBy = activeUser.name;
+                saveProjects(projects);
+                renderEditorDashboard();
+            }
+        }
+
+        // --- CUSTOMER PORTFOLIO & PROJECT MAKER ---
+        function renderCustomerPortfolio() {
+            const gridEl = document.getElementById('editors-portfolio-grid');
+            gridEl.innerHTML = MOCK_EDITORS.map(ed => `
+                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm flex flex-col justify-between p-6">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 font-bold flex items-center justify-center">${ed.avatar}</div>
+                            <div>
+                                <h4 class="font-bold text-base">${ed.name}</h4>
+                                <span class="text-xs text-brand-600 font-medium">${ed.role}</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-500 mb-4 leading-relaxed">${ed.desc}</p>
+                        <div class="space-y-1 mb-4">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Portofolio Unggulan:</span>
+                            <ul class="text-xs text-slate-600 dark:text-slate-300 list-disc list-inside">
+                                ${ed.portfolio.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                        <span class="text-xs font-semibold text-emerald-600"><i class="fa-solid fa-star mr-1"></i>${ed.rating}</span>
+                        <button onclick="openProjectModal('${ed.email}', '${ed.name}')" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold shadow-md transition-all">Pilih & Buat Proyek</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function switchCustomerTab(tab) {
+            const tabPort = document.getElementById('customer-tab-portfolio');
+            const tabProj = document.getElementById('customer-tab-projects');
+            const btnPort = document.getElementById('btn-tab-portfolio');
+            const btnProj = document.getElementById('btn-tab-projects');
+            const titleEl = document.getElementById('customer-header-title');
+            const descEl = document.getElementById('customer-header-desc');
+
+            if (tab === 'projects') {
+                tabPort.classList.add('hidden');
+                tabProj.classList.remove('hidden');
+                btnProj.className = 'px-4 py-2 bg-emerald-600 text-white rounded-xl text-xs font-semibold shadow-md transition-all';
+                btnPort.className = 'px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 rounded-xl text-xs font-semibold transition-all';
+                titleEl.textContent = 'Proyek & Diskusi Saya';
+                descEl.textContent = 'Pantau status proyek yang telah diajukan dan lakukan chat dengan editor.';
+                renderCustomerOrders();
+            } else {
+                tabProj.classList.add('hidden');
+                tabPort.classList.remove('hidden');
+                btnPort.className = 'px-4 py-2 bg-emerald-600 text-white rounded-xl text-xs font-semibold shadow-md transition-all';
+                btnProj.className = 'px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 rounded-xl text-xs font-semibold transition-all';
+                titleEl.textContent = 'Portofolio Editor';
+                descEl.textContent = 'Pilih editor profesional pilihan Anda dan ajukan proyek baru dengan mudah.';
+            }
+        }
+
+        function openProjectModal(editorEmail, editorName) {
+            document.getElementById('modal-editor-email').value = editorEmail;
+            document.getElementById('modal-editor-name').value = editorName;
+            document.getElementById('modal-create-project').classList.remove('hidden');
+        }
+
+        function closeProjectModal() {
+            document.getElementById('modal-create-project').classList.add('hidden');
+        }
+
+        function submitNewProject(e) {
+            e.preventDefault();
+            const editorEmail = document.getElementById('modal-editor-email').value;
+            const editorName = document.getElementById('modal-editor-name').value;
+            const title = document.getElementById('proj-title').value;
+            const category = document.getElementById('proj-category').value;
+            const desc = document.getElementById('proj-desc').value;
+
+            const newProj = {
+                id: 'PROJ-' + Date.now(),
+                targetEditorEmail: editorEmail,
+                targetEditorName: editorName,
+                customerEmail: activeUser.email,
+                customerName: activeUser.name,
+                title: title,
+                category: category,
+                desc: desc,
+                status: 'Menunggu Konfirmasi',
+                acceptedBy: null,
+                date: new Date().toLocaleDateString('id-ID'),
+                chats: []
+            };
+
+            let projects = getProjects();
+            projects.push(newProj);
+            saveProjects(projects);
+
+            closeProjectModal();
+            alert('Proyek berhasil diajukan ke dashboard editor!');
+            switchCustomerTab('projects');
+        }
+
+        function renderCustomerOrders() {
+            const projects = getProjects().filter(p => p.customerEmail === activeUser.email);
+            const listEl = document.getElementById('customer-orders-list');
+
+            if (projects.length === 0) {
+                listEl.innerHTML = `<div class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 text-center text-xs text-slate-400">Belum ada proyek yang diajukan. Silakan pilih editor dari tab "Pilih Editor".</div>`;
+                return;
+            }
+
+            listEl.innerHTML = projects.map(p => `
+                <div onclick="selectCustomerProject('${p.id}')" class="p-4 bg-white dark:bg-slate-900 rounded-2xl border ${activeChatProjectId === p.id ? 'border-emerald-500 shadow-md' : 'border-slate-200 dark:border-slate-800'} cursor-pointer hover:border-emerald-500 transition-all">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${p.status === 'Diterima' ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'}">${p.status}</span>
+                        <span class="text-[10px] text-slate-400">${p.date}</span>
+                    </div>
+                    <h4 class="font-bold text-sm mb-1">${p.title}</h4>
+                    <p class="text-xs text-slate-500">Editor Pilihan: ${p.targetEditorName}</p>
+                </div>
+            `).join('');
+
+            if (activeChatProjectId) {
+                renderChatRoom(activeChatProjectId, 'customer-active-project-container');
+            }
+        }
+
+        function selectCustomerProject(id) {
+            activeChatProjectId = id;
+            renderCustomerOrders();
+        }
+
+        // --- ROOM CHAT INTERAKTIF ---
+        function renderChatRoom(projectId, containerId) {
+            const projects = getProjects();
+            const project = projects.find(p => p.id === projectId);
+            if (!project) return;
+
+            const container = document.getElementById(containerId);
+            const isAccepted = project.status === 'Diterima';
+
+            container.innerHTML = `
+                <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-4">
+                    <div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-brand-600">${project.category}</span>
+                        <h4 class="font-bold text-base">${project.title}</h4>
+                        <p class="text-xs text-slate-400">Customer: ${project.customerName} | Status: <span class="font-semibold ${isAccepted ? 'text-emerald-600' : 'text-amber-600'}">${project.status} ${isAccepted && project.acceptedBy ? '(Diterima oleh ' + project.acceptedBy + ')' : ''}</span></p>
+                    </div>
+                    ${currentRole === 'editor' && project.status === 'Menunggu Konfirmasi' ? `
+                        <button onclick="acceptProject('${project.id}')" class="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs font-semibold shadow-md transition-all">Terima Proyek</button>
+                    ` : ''}
+                </div>
+
+                <div class="flex-1 overflow-y-auto space-y-3 pr-2 mb-4" id="chat-messages-box">
+                    ${project.chats && project.chats.length > 0 ? project.chats.map(c => `
+                        <div class="flex flex-col ${c.sender === activeUser.email ? 'items-end' : 'items-start'}">
+                            <span class="text-[10px] text-slate-400 mb-1">${c.senderName}</span>
+                            <div class="max-w-[75%] px-4 py-2.5 rounded-2xl text-xs ${c.sender === activeUser.email ? 'bg-brand-600 text-white rounded-br-none' : 'bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-bl-none'}">
+                                ${c.message}
+                            </div>
+                        </div>
+                    `).join('') : `
+                        <div class="text-center my-auto text-slate-400 text-xs py-10">Belum ada pesan di ruang chat ini. Mulai percakapan di bawah.</div>
+                    `}
+                </div>
+
+                <form onsubmit="sendChatMessage(event, '${project.id}')" class="flex gap-2 pt-3 border-t border-slate-200 dark:border-slate-800">
+                    <input type="text" id="chat-input-text" ${!isAccepted ? 'disabled placeholder="Proyek harus diterima editor terlebih dahulu untuk chat..."' : 'placeholder="Ketik pesan diskusi..."'} class="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500 disabled:opacity-50">
+                    <button type="submit" ${!isAccepted ? 'disabled' : ''} class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 disabled:opacity-50 text-white rounded-xl text-xs font-semibold shadow-md transition-all"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            `;
+
+            const chatBox = document.getElementById('chat-messages-box');
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function sendChatMessage(e, projectId) {
+            e.preventDefault();
+            const input = document.getElementById('chat-input-text');
+            const msg = input.value.trim();
+            if (!msg) return;
+
+            let projects = getProjects();
+            const idx = projects.findIndex(p => p.id === projectId);
+            if (idx !== -1) {
+                if (!projects[idx].chats) projects[idx].chats = [];
+                projects[idx].chats.push({
+                    sender: activeUser.email,
+                    senderName: activeUser.name,
+                    message: msg,
+                    time: new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })
+                });
+                saveProjects(projects);
+                input.value = '';
+                if (currentRole === 'editor') {
+                    renderEditorDashboard();
+                } else {
+                    renderCustomerOrders();
+                }
+            }
+        }
+    </script>
+</body>
+</html>
