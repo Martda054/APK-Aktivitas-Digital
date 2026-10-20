@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aktivitas Digital - Platform Kolaborasi Editor & Customer</title>
+    <title>Aktivitas Digital - Platform Konten Kreatif & Transaksi</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -44,7 +44,7 @@
             </div>
             <div>
                 <h1 class="font-bold text-sm md:text-base leading-tight">Aktivitas Digital</h1>
-                <span class="text-[10px] text-brand-600 dark:text-brand-400 font-semibold uppercase tracking-wider">Collab Platform</span>
+                <span class="text-[10px] text-brand-600 dark:text-brand-400 font-semibold uppercase tracking-wider">Content Hub & Services</span>
             </div>
         </div>
         <div class="flex items-center gap-3">
@@ -61,36 +61,45 @@
     <!-- MAIN CONTAINER -->
     <main class="max-w-7xl mx-auto p-4 md:p-8 min-h-[calc(100vh-4rem)] flex flex-col">
 
-        <!-- VIEW 1: ROLE SELECTOR (Tampilan Pertama 2 Card) -->
+        <!-- VIEW 1: ROLE SELECTOR (3 CARDS) -->
         <div id="view-role-selector" class="flex-1 flex flex-col items-center justify-center py-12">
             <div class="text-center max-w-xl mb-10">
                 <span class="px-3.5 py-1.5 rounded-full bg-brand-50 dark:bg-brand-950/50 text-brand-600 dark:text-brand-400 text-xs font-semibold uppercase tracking-wider mb-3 inline-block">Selamat Datang</span>
                 <h2 class="text-3xl md:text-4xl font-bold mb-3">Pilih Peran Anda untuk Memulai</h2>
-                <p class="text-sm md:text-base text-slate-500 dark:text-slate-400">Silakan pilih apakah Anda ingin masuk sebagai Editor kreatif atau Customer yang mencari layanan proyek digital.</p>
+                <p class="text-sm md:text-base text-slate-500 dark:text-slate-400">Pilih akses akun sebagai Editor, Customer, atau Admin Verifikator Transaksi.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
                 <!-- Card Editor -->
-                <div onclick="selectRole('editor')" class="group p-8 bg-white dark:bg-slate-900 rounded-3xl border-2 border-slate-200 dark:border-slate-800 hover:border-brand-500 dark:hover:border-brand-500 shadow-sm hover:shadow-xl transition-all cursor-pointer flex flex-col items-center text-center">
-                    <div class="w-20 h-20 rounded-2xl bg-brand-50 dark:bg-brand-900/30 text-brand-600 flex items-center justify-center text-3xl font-bold mb-6 group-hover:scale-110 transition-transform">
+                <div onclick="selectRole('editor')" class="group p-6 bg-white dark:bg-slate-900 rounded-3xl border-2 border-slate-200 dark:border-slate-800 hover:border-brand-500 shadow-sm hover:shadow-xl transition-all cursor-pointer flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-900/30 text-brand-600 flex items-center justify-center text-2xl font-bold mb-4 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-laptop-code"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-2">Editor</h3>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Akses dashboard pesanan umum, lihat proyek masuk dari semua customer, terima tugas, dan berdiskusi.</p>
-                    <span class="px-6 py-3 rounded-xl bg-brand-600 text-white font-semibold text-sm group-hover:bg-brand-700 transition-all shadow-md shadow-brand-500/20">Masuk sebagai Editor</span>
+                    <h3 class="text-xl font-bold mb-2">Editor</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-6">Akses proyek terverifikasi, kirim draf foto/video sesuai batas revisi, dan lakukan diskusi.</p>
+                    <span class="w-full py-2.5 rounded-xl bg-brand-600 text-white font-semibold text-xs hover:bg-brand-700 transition-all shadow-md shadow-brand-500/20 mt-auto">Masuk sebagai Editor</span>
                 </div>
                 <!-- Card Customer -->
-                <div onclick="selectRole('customer')" class="group p-8 bg-white dark:bg-slate-900 rounded-3xl border-2 border-slate-200 dark:border-slate-800 hover:border-emerald-500 dark:hover:border-emerald-500 shadow-sm hover:shadow-xl transition-all cursor-pointer flex flex-col items-center text-center">
-                    <div class="w-20 h-20 rounded-2xl bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 flex items-center justify-center text-3xl font-bold mb-6 group-hover:scale-110 transition-transform">
+                <div onclick="selectRole('customer')" class="group p-6 bg-white dark:bg-slate-900 rounded-3xl border-2 border-slate-200 dark:border-slate-800 hover:border-emerald-500 shadow-sm hover:shadow-xl transition-all cursor-pointer flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 flex items-center justify-center text-2xl font-bold mb-4 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-briefcase"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-2">Customer</h3>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Jelajahi portofolio editor, pilih editor favorit, ajukan proyek baru, dan pantau progres diskusi.</p>
-                    <span class="px-6 py-3 rounded-xl bg-emerald-600 text-white font-semibold text-sm group-hover:bg-emerald-700 transition-all shadow-md shadow-emerald-500/20">Masuk sebagai Customer</span>
+                    <h3 class="text-xl font-bold mb-2">Customer</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-6">Pilih jenis konten, upload bukti bayar via BRI/QRIS untuk diverifikasi Admin, dan kirim aset media.</p>
+                    <span class="w-full py-2.5 rounded-xl bg-emerald-600 text-white font-semibold text-xs hover:bg-emerald-700 transition-all shadow-md shadow-emerald-500/20 mt-auto">Masuk sebagai Customer</span>
+                </div>
+                <!-- Card Admin -->
+                <div onclick="selectRole('admin')" class="group p-6 bg-white dark:bg-slate-900 rounded-3xl border-2 border-slate-200 dark:border-slate-800 hover:border-amber-500 shadow-sm hover:shadow-xl transition-all cursor-pointer flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-amber-50 dark:bg-amber-900/30 text-amber-600 flex items-center justify-center text-2xl font-bold mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Admin</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-6">Menerima rekapan bukti transaksi otomatis dari customer. Penolakan akan membatalkan proyek.</p>
+                    <span class="w-full py-2.5 rounded-xl bg-amber-600 text-white font-semibold text-xs hover:bg-amber-700 transition-all shadow-md shadow-amber-500/20 mt-auto">Masuk sebagai Admin</span>
                 </div>
             </div>
         </div>
 
-        <!-- VIEW 2: AUTH MODAL / FORM (Login / Register Peran) -->
+        <!-- VIEW 2: AUTH MODAL -->
         <div id="view-auth" class="flex-1 flex items-center justify-center py-10 hidden">
             <div class="w-full max-w-md p-8 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl">
                 <div class="text-center mb-6">
@@ -125,17 +134,17 @@
             </div>
         </div>
 
-        <!-- VIEW 3: EDITOR DASHBOARD (Dashboard Pesanan Bersama & Chat) -->
+        <!-- VIEW 3: EDITOR DASHBOARD -->
         <div id="view-editor-dashboard" class="flex-1 flex flex-col space-y-6 hidden">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
                 <div>
-                    <span class="px-3 py-1 rounded-md bg-brand-50 dark:bg-brand-950/50 text-brand-600 dark:text-brand-400 text-xs font-semibold uppercase tracking-wider">Dashboard Editor Bersama</span>
-                    <h2 class="text-2xl font-bold mt-1">Daftar Proyek Masuk</h2>
-                    <p class="text-sm text-slate-500">Semua pesanan dari customer tampil di sini agar dapat dilihat dan dikelola bersama oleh para editor.</p>
+                    <span class="px-3 py-1 rounded-md bg-brand-50 dark:bg-brand-950/50 text-brand-600 dark:text-brand-400 text-xs font-semibold uppercase tracking-wider">Dashboard Editor</span>
+                    <h2 class="text-2xl font-bold mt-1">Daftar Pesanan & Diskusi Konten</h2>
+                    <p class="text-sm text-slate-500">Terima proyek terverifikasi Admin, kirim draf hasil, dan lakukan diskusi.</p>
                 </div>
                 <div class="flex items-center gap-3">
-                    <div class="px-4 py-2 bg-brand-50 dark:bg-brand-950/30 rounded-xl text-center">
-                        <span class="block text-xs text-slate-500">Total Proyek</span>
+                    <div class="px-4 py-2 bg-brand-50 dark:bg-brand-950/30 rounded-xl text-center border border-brand-200 dark:border-brand-900">
+                        <span class="block text-[10px] uppercase font-bold text-brand-600">Total Pesanan</span>
                         <span id="editor-order-count" class="text-lg font-bold text-brand-600">0</span>
                     </div>
                 </div>
@@ -143,59 +152,83 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
                 <div class="lg:col-span-1 space-y-4">
-                    <h3 class="font-bold text-base">Antrean Proyek</h3>
-                    <div id="editor-orders-list" class="space-y-3">
-                        <!-- Rendered via JS -->
-                    </div>
+                    <h3 class="font-bold text-base">Pesanan Masuk</h3>
+                    <div id="editor-orders-list" class="space-y-3"></div>
                 </div>
-                <div class="lg:col-span-2 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 flex flex-col h-[550px]">
+                <div class="lg:col-span-2 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 flex flex-col h-[620px]">
                     <div id="editor-active-project-container" class="flex-1 flex flex-col h-full">
                         <div class="text-center my-auto text-slate-400">
                             <i class="fa-solid fa-comments text-4xl mb-3"></i>
-                            <p class="text-sm">Pilih proyek di sebelah kiri untuk melihat detail dan mulai chat.</p>
+                            <p class="text-sm">Pilih pesanan di sebelah kiri untuk melihat status verifikasi Admin, batas revisi, dan ruang chat.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- VIEW 4: CUSTOMER PORTFOLIO & PROJECT MAKER -->
+        <!-- VIEW 4: CUSTOMER DASHBOARD -->
         <div id="view-customer-dashboard" class="flex-1 flex flex-col space-y-6 hidden">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
                 <div>
                     <span class="px-3 py-1 rounded-md bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 text-xs font-semibold uppercase tracking-wider">Portal Customer</span>
                     <h2 class="text-2xl font-bold mt-1" id="customer-header-title">Portofolio Editor</h2>
-                    <p class="text-sm text-slate-500" id="customer-header-desc">Pilih editor profesional pilihan Anda dan ajukan proyek baru dengan mudah.</p>
+                    <p class="text-sm text-slate-500" id="customer-header-desc">Pilih editor, tentukan jenis konten & paket revisi, lalu lampirkan foto bukti bayar.</p>
                 </div>
                 <div class="flex items-center gap-2">
                     <button onclick="switchCustomerTab('portfolio')" id="btn-tab-portfolio" class="px-4 py-2 bg-emerald-600 text-white rounded-xl text-xs font-semibold shadow-md transition-all">
                         <i class="fa-solid fa-users mr-1"></i> Pilih Editor
                     </button>
                     <button onclick="switchCustomerTab('projects')" id="btn-tab-projects" class="px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 rounded-xl text-xs font-semibold transition-all">
-                        <i class="fa-solid fa-folder-open mr-1"></i> Proyek Saya
+                        <i class="fa-solid fa-folder-open mr-1"></i> Proyek & Chat Saya
                     </button>
                 </div>
             </div>
 
-            <!-- Tab 1: Portofolio Editor -->
             <div id="customer-tab-portfolio" class="space-y-6">
                 <h3 class="font-bold text-base">Daftar Editor Profesional</h3>
-                <div id="editors-portfolio-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Rendered Editors -->
+                <div id="editors-portfolio-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+            </div>
+
+            <div id="customer-tab-projects" class="space-y-6 hidden">
+                <h3 class="font-bold text-base">Proyek & Ruang Diskusi Konten</h3>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+                    <div class="lg:col-span-1 space-y-3" id="customer-orders-list"></div>
+                    <div class="lg:col-span-2 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 flex flex-col h-[620px]" id="customer-active-project-container">
+                        <div class="text-center my-auto text-slate-400">
+                            <i class="fa-solid fa-comments text-4xl mb-3"></i>
+                            <p class="text-sm">Pilih proyek Anda untuk mengamati status verifikasi Admin, kirim aset media, dan chat dengan editor.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 5: ADMIN DASHBOARD (VERIFIKASI BUKTI BAYAR) -->
+        <div id="view-admin-dashboard" class="flex-1 flex flex-col space-y-6 hidden">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div>
+                    <span class="px-3 py-1 rounded-md bg-amber-50 dark:bg-amber-950/50 text-amber-600 text-xs font-semibold uppercase tracking-wider">Dashboard Admin Verifikator</span>
+                    <h2 class="text-2xl font-bold mt-1">Verifikasi Transaksi Pembayaran</h2>
+                    <p class="text-sm text-slate-500">Bukti pembayaran dari customer otomatis masuk di sini. Jika ditolak, proyek otomatis batal.</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="px-4 py-2 bg-amber-50 dark:bg-amber-950/30 rounded-xl text-center border border-amber-200 dark:border-amber-900">
+                        <span class="block text-[10px] uppercase font-bold text-amber-600">Transaksi Masuk</span>
+                        <span id="admin-trx-count" class="text-lg font-bold text-amber-600">0</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Tab 2: Proyek & Chat Customer -->
-            <div id="customer-tab-projects" class="space-y-6 hidden">
-                <h3 class="font-bold text-base">Proyek & Ruang Chat Anda</h3>
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
-                    <div class="lg:col-span-1 space-y-3" id="customer-orders-list">
-                        <!-- Rendered Customer Projects -->
-                    </div>
-                    <div class="lg:col-span-2 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 flex flex-col h-[550px]" id="customer-active-project-container">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+                <div class="lg:col-span-1 space-y-4">
+                    <h3 class="font-bold text-base">Daftar Transaksi Masuk</h3>
+                    <div id="admin-orders-list" class="space-y-3"></div>
+                </div>
+                <div class="lg:col-span-2 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 flex flex-col h-[620px]">
+                    <div id="admin-active-project-container" class="flex-1 flex flex-col h-full overflow-y-auto">
                         <div class="text-center my-auto text-slate-400">
-                            <i class="fa-solid fa-comments text-4xl mb-3"></i>
-                            <p class="text-sm">Pilih proyek Anda untuk melihat status dan melakukan chat dengan editor.</p>
+                            <i class="fa-solid fa-receipt text-4xl mb-3"></i>
+                            <p class="text-sm">Pilih transaksi di sebelah kiri untuk melihat foto bukti pembayaran dan melakukan verifikasi.</p>
                         </div>
                     </div>
                 </div>
@@ -204,55 +237,153 @@
 
     </main>
 
-    <!-- MODAL: BUAT PROYEK BARU -->
+    <!-- MODAL: PREVIEW BUKTI TRANSFER UNTUK ADMIN -->
+    <div id="modal-proof-preview" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm hidden">
+        <div class="max-w-2xl w-full p-4 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl m-4 flex flex-col items-center">
+            <div class="flex items-center justify-between w-full mb-3">
+                <h4 class="font-bold text-sm">Bukti Transfer Pembayaran</h4>
+                <button onclick="closeProofModal()" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:bg-rose-50 hover:text-rose-600 flex items-center justify-center transition-all"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="w-full max-h-[75vh] flex items-center justify-center overflow-auto bg-slate-950 rounded-2xl p-2">
+                <img id="modal-proof-img" src="" alt="Bukti Transfer Detail" class="max-h-[70vh] object-contain rounded-xl">
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: BUAT PROYEK -->
     <div id="modal-create-project" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 backdrop-blur-sm hidden">
-        <div class="w-full max-w-lg p-8 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl m-4">
+        <div class="w-full max-w-lg p-8 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl m-4 overflow-y-auto max-h-[90vh]">
             <div class="flex items-center justify-between mb-6">
-                <h3 class="text-xl font-bold">Ajukan Proyek ke Editor</h3>
+                <h3 class="text-xl font-bold">Buat Proyek Konten Baru</h3>
                 <button onclick="closeProjectModal()" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:bg-rose-50 hover:text-rose-600 transition-all flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <form onsubmit="submitNewProject(event)" class="space-y-4">
+            <form onsubmit="openPaymentModalStep(event)" class="space-y-4">
                 <input type="hidden" id="modal-editor-email">
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Editor Dipilih</label>
                     <input type="text" id="modal-editor-name" disabled class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800/50 text-sm font-semibold">
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Judul Proyek</label>
-                    <input type="text" id="proj-title" required placeholder="Contoh: Edit Video Reels Instagram Brand" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Judul / Topik Konten</label>
+                    <input type="text" id="proj-title" required placeholder="Contoh: Video Edukasi Bisnis Digital 60 Detik" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
                 </div>
+                
                 <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Kategori Layanan</label>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Kategori Konten</label>
                     <select id="proj-category" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
-                        <option value="Kampanye Media Sosial">Kampanye Media Sosial</option>
-                        <option value="Video Editing & Reels">Video Editing & Reels</option>
-                        <option value="Analisis Insight Pelanggan">Analisis Insight Pelanggan</option>
-                        <option value="Copywriting & Ad Scripts">Copywriting & Ad Scripts</option>
+                        <option value="Konten Edukasi">1. Konten Edukasi</option>
+                        <option value="Konten Menghibur">2. Konten Menghibur</option>
+                        <option value="Konten Menginspirasi">3. Konten Menginspirasi</option>
+                        <option value="Konten Promosi">4. Konten Promosi</option>
                     </select>
                 </div>
+
                 <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Deskripsi / Detail Kebutuhan</label>
-                    <textarea id="proj-desc" rows="4" required placeholder="Jelaskan detail brief proyek Anda..." class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"></textarea>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Batas Perbaikan (Revisi)</label>
+                    <select id="proj-revision-package" onchange="calculateTotalCost()" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        <option value="50000|1x Perbaikan|1">1x Perbaikan Konten - Rp 50.000</option>
+                        <option value="75000|2x Perbaikan|2">2x Perbaikan Konten - Rp 75.000</option>
+                        <option value="100000|3x Perbaikan|3">3x Perbaikan Konten - Rp 100.000</option>
+                        <option value="200000|Unlimited Perbaikan|999">Unlimited Perbaikan Konten - Rp 200.000</option>
+                    </select>
                 </div>
-                <button type="submit" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl shadow-lg transition-all text-sm">Kirim Pengajuan Proyek</button>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Deskripsi & Brief Pengerjaan</label>
+                    <textarea id="proj-desc" rows="3" required placeholder="Jelaskan pesan utama atau arahan visual yang Anda inginkan..." class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"></textarea>
+                </div>
+
+                <div class="p-4 bg-brand-50 dark:bg-brand-950/30 rounded-2xl flex items-center justify-between">
+                    <span class="text-xs font-semibold">Total Biaya Pembayaran Awal:</span>
+                    <span id="summary-total-price" class="text-lg font-bold text-brand-600">Rp 50.000</span>
+                </div>
+
+                <button type="submit" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl shadow-lg transition-all text-sm">Lanjut ke Pembayaran Awal</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: PEMBAYARAN & UNGGAH BUKTI BAYAR FOTO -->
+    <div id="modal-payment" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 backdrop-blur-sm hidden">
+        <div class="w-full max-w-md p-8 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl m-4 overflow-y-auto max-h-[90vh]">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-xl font-bold">Pembayaran Awal Proyek</h3>
+                <button onclick="closePaymentModal()" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:bg-rose-50 hover:text-rose-600 transition-all flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="p-4 bg-emerald-50 dark:bg-emerald-950/30 rounded-2xl mb-4 text-center border border-emerald-200 dark:border-emerald-900">
+                <span class="text-xs text-slate-500 block mb-1">Total Tagihan Konten</span>
+                <span id="pay-modal-amount" class="text-2xl font-bold text-emerald-600">Rp 50.000</span>
+            </div>
+
+            <form onsubmit="confirmInitialPayment(event)" class="space-y-4 mb-2">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2">Pilih Metode Pembayaran</label>
+                    <div class="grid grid-cols-2 gap-3 mb-3">
+                        <div onclick="switchPaymentMethod('bri')" id="method-bri" class="p-3 border-2 rounded-2xl cursor-pointer border-brand-500 bg-brand-50/20 text-center transition-all">
+                            <i class="fa-solid fa-building-columns text-brand-600 block mb-1"></i>
+                            <span class="text-xs font-bold block">Transfer BRI</span>
+                        </div>
+                        <div onclick="switchPaymentMethod('qris')" id="method-qris" class="p-3 border-2 rounded-2xl cursor-pointer border-slate-200 dark:border-slate-800 text-center transition-all">
+                            <i class="fa-solid fa-qrcode text-emerald-600 block mb-1"></i>
+                            <span class="text-xs font-bold block">Scan QRIS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="payment-details-box" class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700 text-xs">
+                    <div id="info-bri">
+                        <p class="text-slate-500 mb-1">Transfer ke Rekening Resmi BRI:</p>
+                        <p class="font-mono font-bold text-sm text-brand-600">1234-01-000000-53-0</p>
+                        <p class="font-semibold text-slate-700 dark:text-slate-300 mt-1">a.n. Aktivitas Digital Official</p>
+                    </div>
+                    <div id="info-qris" class="hidden text-center">
+                        <div class="w-36 h-36 bg-white p-2 rounded-xl mx-auto border shadow-inner flex items-center justify-center mb-2">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=AktivitasDigitalQRIS" alt="QRIS Barcode" class="w-full h-full object-contain">
+                        </div>
+                        <p class="text-[11px] text-slate-400">Scan QRIS di atas via E-Wallet atau M-Banking Anda.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-rose-500 mb-1">
+                        <i class="fa-solid fa-asterisk text-[9px] mr-1"></i>Upload Gambar Bukti Transfer (Wajib)
+                    </label>
+                    <label class="w-full h-28 border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-brand-500 rounded-2xl flex flex-col items-center justify-center cursor-pointer transition-all bg-slate-50 dark:bg-slate-800/50 p-2 overflow-hidden relative" id="proof-upload-box">
+                        <div id="proof-upload-prompt" class="text-center">
+                            <i class="fa-solid fa-cloud-arrow-up text-2xl text-slate-400 mb-1"></i>
+                            <span class="text-xs text-slate-500 block font-medium">Klik untuk upload foto/screenshot struk</span>
+                            <span class="text-[10px] text-slate-400">Format: JPG, PNG, WEBP</span>
+                        </div>
+                        <img id="proof-preview-img" class="hidden w-full h-full object-contain rounded-xl">
+                        <input type="file" id="pay-proof-file" accept="image/*" onchange="handleProofImageUpload(event)" class="hidden" required>
+                    </label>
+                </div>
+
+                <button type="submit" id="btn-submit-payment" disabled class="w-full py-3 bg-slate-300 dark:bg-slate-800 text-slate-500 font-semibold rounded-xl transition-all text-sm mt-4 cursor-not-allowed">
+                    <i class="fa-solid fa-lock mr-1"></i> Upload Bukti Transfer Dulu
+                </button>
             </form>
         </div>
     </div>
 
     <!-- SCRIPT UTAMA APLIKASI -->
     <script>
-        // Data Mock Editor Portofolio
         const MOCK_EDITORS = [
-            { email: 'editor1@aktivitasdigital.id', name: 'Rian Pratama', role: 'Senior Video & Social Media Editor', rating: '4.9 (48 Proyek)', avatar: 'RP', desc: 'Spesialis penyuntingan video reels, TikTok kampanye brand, dan manajemen konten visual organik.', portfolio: ['Reels Instagram Brand Kuliner', 'TikTok Campaign Tech Gadget', 'YouTube Intro Animation'] },
-            { email: 'editor2@aktivitasdigital.id', name: 'Siti Rahma', role: 'Data Analyst & Content Strategist', rating: '4.8 (36 Proyek)', avatar: 'SR', desc: 'Ahli rekapitulasi data pesan langsung pelanggan, analisis tren insight, dan strategi pemasaran digital.', portfolio: ['Customer Trend Report UMKM', 'Market Research E-Commerce', 'Social Media Analytics Dashboard'] },
-            { email: 'editor3@aktivitasdigital.id', name: 'Dimas Anggara', role: 'Copywriter & Ad Script Specialist', rating: '5.0 (52 Proyek)', avatar: 'DA', desc: 'Berpengalaman menyusun naskah iklan komersial, caption media sosial, dan copywriting produk teknologi.', portfolio: ['Ad Script Samsung Series', 'Copywriting Campaign Retail', 'Interactive Storyboard Script'] }
+            { email: 'editor1@aktivitasdigital.id', name: 'Rian Pratama', role: 'Specialist Video Edukasi & Promosi', rating: '4.9 (48 Proyek)', avatar: 'RP', desc: 'Spesialis penyuntingan video reels, konten edukasi brand, dan pembuat video promosi produk.', portfolio: ['Video Edukasi Bisnis', 'Promo Produk UMKM', 'Konten Menginspirasi TikTok'] },
+            { email: 'editor2@aktivitasdigital.id', name: 'Siti Rahma', role: 'Content Creator Edukasi & Hiburan', rating: '4.8 (36 Proyek)', avatar: 'SR', desc: 'Ahli dalam membuat skrip dan editing konten hiburan yang viral serta visualisasi ide edukatif.', portfolio: ['Konten Menghibur Lucu', 'Informatif Infografis', 'Podcast Short Clip'] },
+            { email: 'editor3@aktivitasdigital.id', name: 'Dimas Anggara', role: 'Editor Storytelling & Promosi Visual', rating: '5.0 (52 Proyek)', avatar: 'DA', desc: 'Fokus pada narasi konten menginspirasi dan strategi editing video promosi conversion tinggi.', portfolio: ['Brand Storytelling Video', 'Iklan Promosi Instagram', 'Inspirational Reels'] }
         ];
 
-        // State Aplikasi
         let currentRole = null;
         let isRegisterMode = false;
         let activeUser = null;
         let activeChatProjectId = null;
+        let activeAdminProjectId = null;
+        let selectedPayMethod = 'bri';
+        let tempProjectData = null;
+        let uploadedProofImageData = null;
+        let pendingMediaAttachment = null;
 
         window.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -278,6 +409,10 @@
             }
         });
 
+        function formatRupiah(num) {
+            return 'Rp ' + Number(num).toLocaleString('id-ID');
+        }
+
         function toggleDarkMode() {
             if (document.documentElement.classList.contains('dark')) {
                 document.documentElement.classList.remove('dark');
@@ -298,44 +433,35 @@
 
             const iconEl = document.getElementById('auth-role-icon');
             const titleEl = document.getElementById('auth-title');
-            const subtitleEl = document.getElementById('auth-subtitle');
-            const nameContainer = document.getElementById('field-name-container');
 
             if (role === 'editor') {
                 iconEl.className = 'w-14 h-14 rounded-2xl bg-brand-600 text-white text-2xl font-bold flex items-center justify-center mx-auto mb-3 shadow-lg';
                 iconEl.innerHTML = '<i class="fa-solid fa-laptop-code"></i>';
                 titleEl.textContent = 'Portal Editor';
-            } else {
+            } else if (role === 'customer') {
                 iconEl.className = 'w-14 h-14 rounded-2xl bg-emerald-600 text-white text-2xl font-bold flex items-center justify-center mx-auto mb-3 shadow-lg';
                 iconEl.innerHTML = '<i class="fa-solid fa-briefcase"></i>';
                 titleEl.textContent = 'Portal Customer';
+            } else {
+                iconEl.className = 'w-14 h-14 rounded-2xl bg-amber-600 text-white text-2xl font-bold flex items-center justify-center mx-auto mb-3 shadow-lg';
+                iconEl.innerHTML = '<i class="fa-solid fa-user-shield"></i>';
+                titleEl.textContent = 'Portal Admin';
             }
-            subtitleEl.textContent = 'Masuk ke akun Anda';
-            nameContainer.classList.add('hidden');
-            document.getElementById('auth-switch-text').textContent = 'Belum punya akun?';
-            document.getElementById('auth-switch-btn').textContent = 'Daftar';
-            document.getElementById('auth-submit-btn').textContent = 'Masuk';
+            document.getElementById('field-name-container').classList.add('hidden');
             document.getElementById('form-auth').reset();
         }
 
         function toggleAuthMode() {
             isRegisterMode = !isRegisterMode;
             const nameContainer = document.getElementById('field-name-container');
-            const subtitleEl = document.getElementById('auth-subtitle');
             const submitBtn = document.getElementById('auth-submit-btn');
 
             if (isRegisterMode) {
                 nameContainer.classList.remove('hidden');
-                subtitleEl.textContent = 'Daftar akun baru';
                 submitBtn.textContent = 'Daftar Akun';
-                document.getElementById('auth-switch-text').textContent = 'Sudah punya akun?';
-                document.getElementById('auth-switch-btn').textContent = 'Masuk';
             } else {
                 nameContainer.classList.add('hidden');
-                subtitleEl.textContent = 'Masuk ke akun Anda';
                 submitBtn.textContent = 'Masuk';
-                document.getElementById('auth-switch-text').textContent = 'Belum punya akun?';
-                document.getElementById('auth-switch-btn').textContent = 'Daftar';
             }
         }
 
@@ -345,6 +471,7 @@
             document.getElementById('view-auth').classList.add('hidden');
             document.getElementById('view-editor-dashboard').classList.add('hidden');
             document.getElementById('view-customer-dashboard').classList.add('hidden');
+            document.getElementById('view-admin-dashboard').classList.add('hidden');
             document.getElementById('view-role-selector').classList.remove('hidden');
             document.getElementById('user-badge-container').classList.add('hidden');
         }
@@ -360,7 +487,7 @@
 
             if (isRegisterMode) {
                 if (users.some(u => u.email === email)) {
-                    errEl.textContent = 'Email sudah terdaftar pada peran ini.';
+                    errEl.textContent = 'Email sudah terdaftar.';
                     errEl.classList.remove('hidden');
                     return;
                 }
@@ -376,6 +503,9 @@
             if (!foundUser && currentRole === 'editor') {
                 const mock = MOCK_EDITORS.find(m => m.email === email);
                 if (mock) foundUser = { name: mock.name, email: mock.email };
+            }
+            if (!foundUser && currentRole === 'admin') {
+                foundUser = { name: 'Admin Verifikator', email: email };
             }
 
             if (!foundUser) {
@@ -398,10 +528,13 @@
             if (currentRole === 'editor') {
                 document.getElementById('view-editor-dashboard').classList.remove('hidden');
                 renderEditorDashboard();
-            } else {
+            } else if (currentRole === 'customer') {
                 document.getElementById('view-customer-dashboard').classList.remove('hidden');
                 renderCustomerPortfolio();
                 switchCustomerTab('portfolio');
+            } else if (currentRole === 'admin') {
+                document.getElementById('view-admin-dashboard').classList.remove('hidden');
+                renderAdminDashboard();
             }
         }
 
@@ -410,7 +543,6 @@
             goHome();
         }
 
-        // Proyek Storage (Dashboard Bersama)
         function getProjects() {
             return JSON.parse(localStorage.getItem('akt_shared_projects') || '[]');
         }
@@ -419,25 +551,26 @@
             localStorage.setItem('akt_shared_projects', JSON.stringify(projects));
         }
 
-        // --- EDITOR DASHBOARD BERSAMA ---
+        // --- EDITOR DASHBOARD ---
         function renderEditorDashboard() {
             const projects = getProjects();
             document.getElementById('editor-order-count').textContent = projects.length;
 
             const listEl = document.getElementById('editor-orders-list');
             if (projects.length === 0) {
-                listEl.innerHTML = `<div class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 text-center text-xs text-slate-400">Belum ada proyek masuk dari customer.</div>`;
+                listEl.innerHTML = `<div class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 text-center text-xs text-slate-400">Belum ada pesanan masuk.</div>`;
                 return;
             }
 
             listEl.innerHTML = projects.map(p => `
                 <div onclick="selectEditorProject('${p.id}')" class="p-4 bg-white dark:bg-slate-900 rounded-2xl border ${activeChatProjectId === p.id ? 'border-brand-500 shadow-md' : 'border-slate-200 dark:border-slate-800'} cursor-pointer hover:border-brand-500 transition-all">
                     <div class="flex items-center justify-between mb-2">
-                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${p.status === 'Diterima' ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'}">${p.status}</span>
-                        <span class="text-[10px] text-slate-400">${p.date}</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${p.status === 'Dibatalkan' ? 'bg-rose-50 text-rose-600' : (p.payStatus === 'Lunas - Disetujui Admin' ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600')}">${p.status === 'Dibatalkan' ? 'Dibatalkan' : p.payStatus}</span>
+                        <span class="text-xs font-bold text-brand-600">${formatRupiah(p.price)}</span>
                     </div>
                     <h4 class="font-bold text-sm mb-1">${p.title}</h4>
-                    <p class="text-xs text-slate-500 truncate">Customer: ${p.customerName} | Target Editor: ${p.targetEditorName}</p>
+                    <p class="text-xs text-brand-600 font-semibold">${p.category}</p>
+                    <p class="text-xs text-slate-500 mt-1">Customer: ${p.customerName} | Revisi: <strong>${p.revisionPackage}</strong></p>
                 </div>
             `).join('');
 
@@ -456,13 +589,12 @@
             const idx = projects.findIndex(p => p.id === id);
             if (idx !== -1) {
                 projects[idx].status = 'Diterima';
-                projects[idx].acceptedBy = activeUser.name;
                 saveProjects(projects);
                 renderEditorDashboard();
             }
         }
 
-        // --- CUSTOMER PORTFOLIO & PROJECT MAKER ---
+        // --- CUSTOMER DASHBOARD ---
         function renderCustomerPortfolio() {
             const gridEl = document.getElementById('editors-portfolio-grid');
             gridEl.innerHTML = MOCK_EDITORS.map(ed => `
@@ -477,7 +609,7 @@
                         </div>
                         <p class="text-xs text-slate-500 mb-4 leading-relaxed">${ed.desc}</p>
                         <div class="space-y-1 mb-4">
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Portofolio Unggulan:</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Spesialisasi Konten:</span>
                             <ul class="text-xs text-slate-600 dark:text-slate-300 list-disc list-inside">
                                 ${ed.portfolio.map(item => `<li>${item}</li>`).join('')}
                             </ul>
@@ -496,24 +628,18 @@
             const tabProj = document.getElementById('customer-tab-projects');
             const btnPort = document.getElementById('btn-tab-portfolio');
             const btnProj = document.getElementById('btn-tab-projects');
-            const titleEl = document.getElementById('customer-header-title');
-            const descEl = document.getElementById('customer-header-desc');
 
             if (tab === 'projects') {
                 tabPort.classList.add('hidden');
                 tabProj.classList.remove('hidden');
                 btnProj.className = 'px-4 py-2 bg-emerald-600 text-white rounded-xl text-xs font-semibold shadow-md transition-all';
                 btnPort.className = 'px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 rounded-xl text-xs font-semibold transition-all';
-                titleEl.textContent = 'Proyek & Diskusi Saya';
-                descEl.textContent = 'Pantau status proyek yang telah diajukan dan lakukan chat dengan editor.';
                 renderCustomerOrders();
             } else {
                 tabProj.classList.add('hidden');
                 tabPort.classList.remove('hidden');
                 btnPort.className = 'px-4 py-2 bg-emerald-600 text-white rounded-xl text-xs font-semibold shadow-md transition-all';
                 btnProj.className = 'px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 rounded-xl text-xs font-semibold transition-all';
-                titleEl.textContent = 'Portofolio Editor';
-                descEl.textContent = 'Pilih editor profesional pilihan Anda dan ajukan proyek baru dengan mudah.';
             }
         }
 
@@ -521,21 +647,31 @@
             document.getElementById('modal-editor-email').value = editorEmail;
             document.getElementById('modal-editor-name').value = editorName;
             document.getElementById('modal-create-project').classList.remove('hidden');
+            calculateTotalCost();
         }
 
         function closeProjectModal() {
             document.getElementById('modal-create-project').classList.add('hidden');
         }
 
-        function submitNewProject(e) {
+        function calculateTotalCost() {
+            const revVal = document.getElementById('proj-revision-package').value.split('|')[0];
+            document.getElementById('summary-total-price').textContent = formatRupiah(revVal);
+        }
+
+        function openPaymentModalStep(e) {
             e.preventDefault();
             const editorEmail = document.getElementById('modal-editor-email').value;
             const editorName = document.getElementById('modal-editor-name').value;
             const title = document.getElementById('proj-title').value;
             const category = document.getElementById('proj-category').value;
+            const revSplitted = document.getElementById('proj-revision-package').value.split('|');
+            const price = revSplitted[0];
+            const revisionPackage = revSplitted[1];
+            const maxRevisionCount = Number(revSplitted[2]);
             const desc = document.getElementById('proj-desc').value;
 
-            const newProj = {
+            tempProjectData = {
                 id: 'PROJ-' + Date.now(),
                 targetEditorEmail: editorEmail,
                 targetEditorName: editorName,
@@ -543,19 +679,96 @@
                 customerName: activeUser.name,
                 title: title,
                 category: category,
+                price: price,
+                revisionPackage: revisionPackage,
+                maxRevisionCount: maxRevisionCount,
+                editorUploadCount: 0,
                 desc: desc,
-                status: 'Menunggu Konfirmasi',
-                acceptedBy: null,
+                status: 'Menunggu Konfirmasi Editor',
+                payStatus: 'Menunggu Verifikasi Admin',
                 date: new Date().toLocaleDateString('id-ID'),
                 chats: []
             };
 
+            closeProjectModal();
+            document.getElementById('pay-modal-amount').textContent = formatRupiah(price);
+            
+            uploadedProofImageData = null;
+            document.getElementById('proof-preview-img').src = '';
+            document.getElementById('proof-preview-img').classList.add('hidden');
+            document.getElementById('proof-upload-prompt').classList.remove('hidden');
+            document.getElementById('pay-proof-file').value = '';
+            
+            const btnSubmit = document.getElementById('btn-submit-payment');
+            btnSubmit.disabled = true;
+            btnSubmit.className = "w-full py-3 bg-slate-300 dark:bg-slate-800 text-slate-500 font-semibold rounded-xl transition-all text-sm mt-4 cursor-not-allowed";
+            btnSubmit.innerHTML = '<i class="fa-solid fa-lock mr-1"></i> Upload Bukti Transfer Dulu';
+
+            document.getElementById('modal-payment').classList.remove('hidden');
+        }
+
+        function closePaymentModal() {
+            document.getElementById('modal-payment').classList.add('hidden');
+        }
+
+        function switchPaymentMethod(method) {
+            selectedPayMethod = method;
+            const mBri = document.getElementById('method-bri');
+            const mQris = document.getElementById('method-qris');
+            const infoBri = document.getElementById('info-bri');
+            const infoQris = document.getElementById('info-qris');
+
+            if (method === 'bri') {
+                mBri.className = 'p-3 border-2 rounded-2xl cursor-pointer border-brand-500 bg-brand-50/20 text-center transition-all';
+                mQris.className = 'p-3 border-2 rounded-2xl cursor-pointer border-slate-200 dark:border-slate-800 text-center transition-all';
+                infoBri.classList.remove('hidden');
+                infoQris.classList.add('hidden');
+            } else {
+                mQris.className = 'p-3 border-2 rounded-2xl cursor-pointer border-emerald-500 bg-emerald-50/20 text-center transition-all';
+                mBri.className = 'p-3 border-2 rounded-2xl cursor-pointer border-slate-200 dark:border-slate-800 text-center transition-all';
+                infoQris.classList.remove('hidden');
+                infoBri.classList.add('hidden');
+            }
+        }
+
+        function handleProofImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                uploadedProofImageData = e.target.result;
+                const imgEl = document.getElementById('proof-preview-img');
+                imgEl.src = uploadedProofImageData;
+                imgEl.classList.remove('hidden');
+                document.getElementById('proof-upload-prompt').classList.add('hidden');
+
+                const btnSubmit = document.getElementById('btn-submit-payment');
+                btnSubmit.disabled = false;
+                btnSubmit.className = "w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl shadow-lg transition-all text-sm mt-4 cursor-pointer";
+                btnSubmit.innerHTML = '<i class="fa-solid fa-paper-plane mr-1"></i> Kirim Bukti ke Admin & Mulai Proyek';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function confirmInitialPayment(e) {
+            e.preventDefault();
+            if (!uploadedProofImageData || !tempProjectData) {
+                alert('Wajib mengunggah foto bukti pembayaran terlebih dahulu!');
+                return;
+            }
+
+            tempProjectData.paymentMethod = selectedPayMethod === 'bri' ? 'Bank BRI' : 'QRIS';
+            tempProjectData.proofImage = uploadedProofImageData;
+            
             let projects = getProjects();
-            projects.push(newProj);
+            projects.push(tempProjectData);
             saveProjects(projects);
 
-            closeProjectModal();
-            alert('Proyek berhasil diajukan ke dashboard editor!');
+            closePaymentModal();
+            alert(`Bukti Pembayaran via ${tempProjectData.paymentMethod} Otomatis Dikirim ke Dashboard Admin! Silakan tunggu verifikasi.`);
+            tempProjectData = null;
+            uploadedProofImageData = null;
             switchCustomerTab('projects');
         }
 
@@ -564,18 +777,19 @@
             const listEl = document.getElementById('customer-orders-list');
 
             if (projects.length === 0) {
-                listEl.innerHTML = `<div class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 text-center text-xs text-slate-400">Belum ada proyek yang diajukan. Silakan pilih editor dari tab "Pilih Editor".</div>`;
+                listEl.innerHTML = `<div class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 text-center text-xs text-slate-400">Belum ada proyek diajukan.</div>`;
                 return;
             }
 
             listEl.innerHTML = projects.map(p => `
                 <div onclick="selectCustomerProject('${p.id}')" class="p-4 bg-white dark:bg-slate-900 rounded-2xl border ${activeChatProjectId === p.id ? 'border-emerald-500 shadow-md' : 'border-slate-200 dark:border-slate-800'} cursor-pointer hover:border-emerald-500 transition-all">
                     <div class="flex items-center justify-between mb-2">
-                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${p.status === 'Diterima' ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'}">${p.status}</span>
-                        <span class="text-[10px] text-slate-400">${p.date}</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${p.status === 'Dibatalkan' ? 'bg-rose-50 text-rose-600' : (p.payStatus === 'Lunas - Disetujui Admin' ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600')}">${p.status === 'Dibatalkan' ? 'Dibatalkan' : p.payStatus}</span>
+                        <span class="text-xs font-bold text-emerald-600">${formatRupiah(p.price)}</span>
                     </div>
                     <h4 class="font-bold text-sm mb-1">${p.title}</h4>
-                    <p class="text-xs text-slate-500">Editor Pilihan: ${p.targetEditorName}</p>
+                    <p class="text-xs text-emerald-600 font-semibold">${p.category}</p>
+                    <p class="text-xs text-slate-500 mt-1">Editor: ${p.targetEditorName} | Paket: <strong>${p.revisionPackage}</strong></p>
                 </div>
             `).join('');
 
@@ -589,44 +803,258 @@
             renderCustomerOrders();
         }
 
-        // --- ROOM CHAT INTERAKTIF ---
+        // --- ADMIN DASHBOARD & VERIFIKASI TRANSAKSI ---
+        function renderAdminDashboard() {
+            const projects = getProjects();
+            document.getElementById('admin-trx-count').textContent = projects.length;
+
+            const listEl = document.getElementById('admin-orders-list');
+            if (projects.length === 0) {
+                listEl.innerHTML = `<div class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 text-center text-xs text-slate-400">Belum ada transaksi masuk dari customer.</div>`;
+                return;
+            }
+
+            listEl.innerHTML = projects.map(p => `
+                <div onclick="selectAdminProject('${p.id}')" class="p-4 bg-white dark:bg-slate-900 rounded-2xl border ${activeAdminProjectId === p.id ? 'border-amber-500 shadow-md' : 'border-slate-200 dark:border-slate-800'} cursor-pointer hover:border-amber-500 transition-all">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${p.status === 'Dibatalkan' ? 'bg-rose-50 text-rose-600' : (p.payStatus === 'Lunas - Disetujui Admin' ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600')}">${p.status === 'Dibatalkan' ? 'Ditolak / Batal' : p.payStatus}</span>
+                        <span class="text-xs font-bold text-amber-600">${formatRupiah(p.price)}</span>
+                    </div>
+                    <h4 class="font-bold text-sm mb-1">${p.title}</h4>
+                    <p class="text-xs text-slate-500">Dari Customer: <strong>${p.customerName}</strong></p>
+                    <p class="text-[10px] text-slate-400 mt-0.5">Tujuan Editor: ${p.targetEditorName}</p>
+                </div>
+            `).join('');
+
+            if (activeAdminProjectId) {
+                renderAdminProjectDetail(activeAdminProjectId);
+            }
+        }
+
+        function selectAdminProject(id) {
+            activeAdminProjectId = id;
+            renderAdminDashboard();
+        }
+
+        function verifyAdminPayment(id, statusApproved) {
+            let projects = getProjects();
+            const idx = projects.findIndex(p => p.id === id);
+            if (idx !== -1) {
+                if (statusApproved) {
+                    projects[idx].payStatus = 'Lunas - Disetujui Admin';
+                } else {
+                    projects[idx].payStatus = 'Ditolak Admin (Pembayaran Gagal)';
+                    projects[idx].status = 'Dibatalkan';
+                }
+                saveProjects(projects);
+                alert(statusApproved ? 'Transaksi Berhasil Diverifikasi & Disetujui Admin!' : 'Transaksi Ditolak! Proyek otomatis dibatalkan.');
+                renderAdminDashboard();
+            }
+        }
+
+        function previewAdminProofImage(projectId) {
+            const projects = getProjects();
+            const p = projects.find(proj => proj.id === projectId);
+            if (p && p.proofImage) {
+                document.getElementById('modal-proof-img').src = p.proofImage;
+                document.getElementById('modal-proof-preview').classList.remove('hidden');
+            } else {
+                alert('Gambar bukti transfer tidak tersedia.');
+            }
+        }
+
+        function closeProofModal() {
+            document.getElementById('modal-proof-preview').classList.add('hidden');
+        }
+
+        function renderAdminProjectDetail(projectId) {
+            const projects = getProjects();
+            const project = projects.find(p => p.id === projectId);
+            if (!project) return;
+
+            const container = document.getElementById('admin-active-project-container');
+            container.innerHTML = `
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
+                        <div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-amber-50 text-amber-600">${project.category}</span>
+                            <h4 class="font-bold text-lg mt-1">${project.title}</h4>
+                            <p class="text-xs text-slate-400">ID Proyek: ${project.id} | Tanggal: ${project.date}</p>
+                        </div>
+                        <span class="text-lg font-bold text-emerald-600">${formatRupiah(project.price)}</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 text-xs bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl">
+                        <div>
+                            <span class="text-slate-400 block">Customer Pengirim:</span>
+                            <strong class="text-slate-800 dark:text-slate-200">${project.customerName} (${project.customerEmail})</strong>
+                        </div>
+                        <div>
+                            <span class="text-slate-400 block">Editor Tujuan:</span>
+                            <strong class="text-slate-800 dark:text-slate-200">${project.targetEditorName}</strong>
+                        </div>
+                        <div>
+                            <span class="text-slate-400 block">Metode Pembayaran:</span>
+                            <strong class="text-brand-600 font-bold">${project.paymentMethod}</strong>
+                        </div>
+                        <div>
+                            <span class="text-slate-400 block">Paket Revisi:</span>
+                            <strong class="text-slate-800 dark:text-slate-200">${project.revisionPackage}</strong>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h5 class="text-xs font-bold uppercase text-slate-500 mb-2">Foto Bukti Transfer Pembayaran:</h5>
+                        ${project.proofImage ? `
+                            <div class="border border-slate-200 dark:border-slate-700 rounded-2xl p-2 bg-slate-900 flex flex-col items-center justify-center max-h-72 overflow-hidden relative group">
+                                <img src="${project.proofImage}" alt="Bukti Transfer" class="max-h-64 object-contain rounded-xl cursor-pointer">
+                                <button onclick="previewAdminProofImage('${project.id}')" class="mt-2 px-4 py-1.5 bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-xs font-semibold shadow transition-all">
+                                    <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Perbesar Bukti Bayar
+                                </button>
+                            </div>
+                        ` : `
+                            <p class="text-xs text-rose-500">Foto bukti pembayaran tidak ditemukan.</p>
+                        `}
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center gap-3">
+                        ${project.status === 'Dibatalkan' ? `
+                            <div class="w-full py-3 bg-rose-50 text-rose-600 rounded-xl text-center text-xs font-bold border border-rose-200">
+                                <i class="fa-solid fa-circle-xmark mr-1"></i> Transaksi Ini Telah Ditolak Admin & Proyek Dibatalkan
+                            </div>
+                        ` : (project.payStatus === 'Lunas - Disetujui Admin' ? `
+                            <div class="w-full py-3 bg-emerald-50 text-emerald-600 rounded-xl text-center text-xs font-bold border border-emerald-200">
+                                <i class="fa-solid fa-circle-check mr-1"></i> Transaksi Ini Sudah Disetujui Admin
+                            </div>
+                        ` : `
+                            <button onclick="verifyAdminPayment('${project.id}', true)" class="flex-1 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold shadow-md transition-all">
+                                <i class="fa-solid fa-check mr-1"></i> Verifikasi & Setujui Transaksi
+                            </button>
+                            <button onclick="verifyAdminPayment('${project.id}', false)" class="py-3 px-4 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-xl text-xs font-semibold border border-rose-200 transition-all">
+                                Tolak Transaksi & Batalkan Proyek
+                            </button>
+                        `)}
+                    </div>
+                </div>
+            `;
+        }
+
+        function handleFileAttachment(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                pendingMediaAttachment = {
+                    type: file.type.startsWith('video/') ? 'video' : 'image',
+                    url: e.target.result,
+                    fileName: file.name
+                };
+                document.getElementById('attachment-preview-box').classList.remove('hidden');
+                document.getElementById('attachment-name').textContent = `${file.type.startsWith('video/') ? '🎥 Video' : '🖼️ Gambar'}: ${file.name}`;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function cancelAttachment() {
+            pendingMediaAttachment = null;
+            document.getElementById('file-upload-input').value = '';
+            document.getElementById('attachment-preview-box').classList.add('hidden');
+        }
+
+        // --- ROOM CHAT DUA ARAH & PENANGANAN PROYEK DIBATALKAN ---
         function renderChatRoom(projectId, containerId) {
             const projects = getProjects();
             const project = projects.find(p => p.id === projectId);
             if (!project) return;
 
             const container = document.getElementById(containerId);
-            const isAccepted = project.status === 'Diterima';
+            const isEditor = currentRole === 'editor';
+            
+            const maxCount = project.maxRevisionCount || 999;
+            const currentUploads = project.editorUploadCount || 0;
+            const isEditorQuotaExhausted = isEditor && (currentUploads >= maxCount);
+            const isProjectCancelled = project.status === 'Dibatalkan';
 
             container.innerHTML = `
-                <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-4">
+                <div class="flex flex-col md:flex-row md:items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-3 gap-2">
                     <div>
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-brand-600">${project.category}</span>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-brand-50 text-brand-600">${project.category}</span>
+                            <span class="text-xs font-bold text-emerald-600">${formatRupiah(project.price)}</span>
+                            <span class="text-[10px] font-semibold text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">${project.revisionPackage}</span>
+                        </div>
                         <h4 class="font-bold text-base">${project.title}</h4>
-                        <p class="text-xs text-slate-400">Customer: ${project.customerName} | Status: <span class="font-semibold ${isAccepted ? 'text-emerald-600' : 'text-amber-600'}">${project.status} ${isAccepted && project.acceptedBy ? '(Diterima oleh ' + project.acceptedBy + ')' : ''}</span></p>
+                        <p class="text-xs text-slate-400">Status Bayar: <strong class="${isProjectCancelled ? 'text-rose-600' : (project.payStatus === 'Lunas - Disetujui Admin' ? 'text-emerald-600' : 'text-amber-600')}">${project.payStatus}</strong> | Draf Editor: <strong class="${currentUploads >= maxCount ? 'text-rose-600' : 'text-brand-600'}">${currentUploads} / ${maxCount === 999 ? 'Unlimited' : maxCount + 'x'}</strong></p>
                     </div>
-                    ${currentRole === 'editor' && project.status === 'Menunggu Konfirmasi' ? `
-                        <button onclick="acceptProject('${project.id}')" class="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs font-semibold shadow-md transition-all">Terima Proyek</button>
-                    ` : ''}
+
+                    <div class="flex items-center gap-2">
+                        ${project.proofImage ? `
+                            <button onclick="previewAdminProofImage('${project.id}')" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-200 rounded-xl text-xs font-semibold transition-all flex items-center gap-1">
+                                <i class="fa-solid fa-receipt text-emerald-600"></i> Bukti Bayar
+                            </button>
+                        ` : ''}
+
+                        ${isEditor && project.status === 'Menunggu Konfirmasi Editor' && !isProjectCancelled ? `
+                            <button onclick="acceptProject('${project.id}')" class="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs font-semibold shadow-md transition-all">Terima Proyek</button>
+                        ` : ''}
+                    </div>
                 </div>
 
-                <div class="flex-1 overflow-y-auto space-y-3 pr-2 mb-4" id="chat-messages-box">
-                    ${project.chats && project.chats.length > 0 ? project.chats.map(c => `
-                        <div class="flex flex-col ${c.sender === activeUser.email ? 'items-end' : 'items-start'}">
-                            <span class="text-[10px] text-slate-400 mb-1">${c.senderName}</span>
-                            <div class="max-w-[75%] px-4 py-2.5 rounded-2xl text-xs ${c.sender === activeUser.email ? 'bg-brand-600 text-white rounded-br-none' : 'bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-bl-none'}">
-                                ${c.message}
+                <!-- Chat Box Area -->
+                <div class="flex-1 overflow-y-auto space-y-3 pr-2 mb-3" id="chat-messages-box">
+                    ${project.chats && project.chats.length > 0 ? project.chats.map(c => {
+                        const isMe = c.sender === activeUser.email;
+                        return `
+                            <div class="flex flex-col ${isMe ? 'items-end' : 'items-start'}">
+                                <span class="text-[10px] text-slate-400 mb-1 px-1">${c.senderName} ${isMe ? '(Anda)' : ''}</span>
+                                <div class="max-w-[80%] px-4 py-2.5 rounded-2xl text-xs leading-relaxed ${
+                                    isMe 
+                                    ? 'bg-brand-600 text-white rounded-br-none shadow-sm' 
+                                    : 'bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-bl-none shadow-sm border border-slate-200 dark:border-slate-700'
+                                }">
+                                    ${c.media ? `
+                                        <div class="mb-2">
+                                            ${c.media.type === 'image' ? `
+                                                <img src="${c.media.url}" alt="Attachment" class="max-h-48 rounded-xl object-cover shadow">
+                                            ` : `
+                                                <video src="${c.media.url}" controls class="max-h-48 rounded-xl object-cover shadow w-full"></video>
+                                            `}
+                                        </div>
+                                    ` : ''}
+                                    ${c.message ? `<div>${c.message}</div>` : ''}
+                                </div>
+                                <span class="text-[9px] text-slate-400 mt-0.5 px-1">${c.time}</span>
                             </div>
-                        </div>
-                    `).join('') : `
-                        <div class="text-center my-auto text-slate-400 text-xs py-10">Belum ada pesan di ruang chat ini. Mulai percakapan di bawah.</div>
+                        `;
+                    }).join('') : `
+                        <div class="text-center my-auto text-slate-400 text-xs py-10">Belum ada pesan. Mulai kirim arahan atau media draf di bawah.</div>
                     `}
                 </div>
 
-                <form onsubmit="sendChatMessage(event, '${project.id}')" class="flex gap-2 pt-3 border-t border-slate-200 dark:border-slate-800">
-                    <input type="text" id="chat-input-text" ${!isAccepted ? 'disabled placeholder="Proyek harus diterima editor terlebih dahulu untuk chat..."' : 'placeholder="Ketik pesan diskusi..."'} class="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500 disabled:opacity-50">
-                    <button type="submit" ${!isAccepted ? 'disabled' : ''} class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 disabled:opacity-50 text-white rounded-xl text-xs font-semibold shadow-md transition-all"><i class="fa-solid fa-paper-plane"></i></button>
-                </form>
+                <div id="attachment-preview-box" class="hidden p-2.5 bg-brand-50 dark:bg-brand-950/40 rounded-xl mb-2 flex items-center justify-between border border-brand-200 dark:border-brand-800">
+                    <span id="attachment-name" class="text-xs font-semibold text-brand-600 truncate">Preview File</span>
+                    <button type="button" onclick="cancelAttachment()" class="text-xs text-rose-500 font-bold hover:underline">Batal</button>
+                </div>
+
+                ${isProjectCancelled ? `
+                    <div class="p-3 bg-rose-50 dark:bg-rose-950/30 text-rose-600 rounded-xl text-center text-xs font-semibold border border-rose-200 dark:border-rose-900">
+                        <i class="fa-solid fa-circle-xmark mr-1"></i> Transaksi pembayaran ditolak oleh Admin. Proyek ini resmi dibatalkan dan room chat dikunci.
+                    </div>
+                ` : (isEditorQuotaExhausted ? `
+                    <div class="p-3 bg-rose-50 dark:bg-rose-950/30 text-rose-600 rounded-xl text-center text-xs font-semibold border border-rose-200 dark:border-rose-900">
+                        <i class="fa-solid fa-lock mr-1"></i> Kuota perbaikan/draf konten untuk proyek ini telah mencapai batas maksimal (${maxCount}x).
+                    </div>
+                ` : `
+                    <form onsubmit="sendChatMessage(event, '${project.id}')" class="flex items-center gap-2 pt-2 border-t border-slate-200 dark:border-slate-800">
+                        <label class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-600 dark:text-slate-300 flex items-center justify-center cursor-pointer transition-all shrink-0" title="Lampirkan Gambar/Video">
+                            <i class="fa-solid fa-paperclip text-sm"></i>
+                            <input type="file" id="file-upload-input" accept="image/*,video/*" onchange="handleFileAttachment(event)" class="hidden">
+                        </label>
+                        <input type="text" id="chat-input-text" placeholder="${isEditor ? 'Ketik pesan atau upload draf konten...' : 'Ketik pesan atau kirim aset konten...'}" class="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        <button type="submit" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs font-semibold shadow-md transition-all shrink-0"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                `)}
             `;
 
             const chatBox = document.getElementById('chat-messages-box');
@@ -637,25 +1065,34 @@
             e.preventDefault();
             const input = document.getElementById('chat-input-text');
             const msg = input.value.trim();
-            if (!msg) return;
+
+            if (!msg && !pendingMediaAttachment) return;
 
             let projects = getProjects();
             const idx = projects.findIndex(p => p.id === projectId);
             if (idx !== -1) {
+                const isEditor = currentRole === 'editor';
+                const hasMedia = !!pendingMediaAttachment;
+
+                if (isEditor && hasMedia) {
+                    projects[idx].editorUploadCount = (projects[idx].editorUploadCount || 0) + 1;
+                }
+
                 if (!projects[idx].chats) projects[idx].chats = [];
                 projects[idx].chats.push({
                     sender: activeUser.email,
                     senderName: activeUser.name,
                     message: msg,
+                    media: pendingMediaAttachment,
                     time: new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })
                 });
+
                 saveProjects(projects);
                 input.value = '';
-                if (currentRole === 'editor') {
-                    renderEditorDashboard();
-                } else {
-                    renderCustomerOrders();
-                }
+                cancelAttachment();
+
+                if (currentRole === 'editor') renderEditorDashboard();
+                else renderCustomerOrders();
             }
         }
     </script>
