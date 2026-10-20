@@ -93,8 +93,8 @@
                         <i class="fa-solid fa-user-shield"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-2">Admin</h3>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-6">Menerima rekapan bukti transaksi otomatis dari customer. Penolakan akan membatalkan proyek.</p>
-                    <span class="w-full py-2.5 rounded-xl bg-amber-600 text-white font-semibold text-xs hover:bg-amber-700 transition-all shadow-md shadow-amber-500/20 mt-auto">Masuk sebagai Admin</span>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-6">Akses terbatas pemilik platform. Menerima rekapan bukti transaksi otomatis dari customer.</p>
+                    <span class="w-full py-2.5 rounded-xl bg-amber-600 text-white font-semibold text-xs hover:bg-amber-700 transition-all shadow-md shadow-amber-500/20 mt-auto">Masuk Khusus Admin</span>
                 </div>
             </div>
         </div>
@@ -124,10 +124,10 @@
                         <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Password</label>
                         <input type="password" id="auth-password" required minlength="6" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
                     </div>
-                    <p id="auth-error" class="text-xs text-rose-500 hidden"></p>
+                    <p id="auth-error" class="text-xs text-rose-500 font-semibold hidden p-2.5 bg-rose-50 dark:bg-rose-950/40 rounded-xl border border-rose-200 dark:border-rose-900"></p>
                     <button type="submit" id="auth-submit-btn" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl shadow-lg transition-all text-sm">Masuk</button>
                 </form>
-                <div class="text-center mt-6 text-sm text-slate-500">
+                <div id="auth-switch-container" class="text-center mt-6 text-sm text-slate-500">
                     <span id="auth-switch-text">Belum punya akun?</span> 
                     <button onclick="toggleAuthMode()" id="auth-switch-btn" class="text-brand-600 font-semibold hover:underline ml-1">Daftar</button>
                 </div>
@@ -369,6 +369,13 @@
 
     <!-- SCRIPT UTAMA APLIKASI -->
     <script>
+        // KREDENSIAL KHUSUS ADMIN (HANYA ANDA YANG BISA MASUK)
+        const ADMIN_CREDENTIALS = {
+            email: 'admin@aktivitasdigital.id',
+            password: 'admin123',
+            name: 'Utama Admin'
+        };
+
         const MOCK_EDITORS = [
             { email: 'editor1@aktivitasdigital.id', name: 'Rian Pratama', role: 'Specialist Video Edukasi & Promosi', rating: '4.9 (48 Proyek)', avatar: 'RP', desc: 'Spesialis penyuntingan video reels, konten edukasi brand, dan pembuat video promosi produk.', portfolio: ['Video Edukasi Bisnis', 'Promo Produk UMKM', 'Konten Menginspirasi TikTok'] },
             { email: 'editor2@aktivitasdigital.id', name: 'Siti Rahma', role: 'Content Creator Edukasi & Hiburan', rating: '4.8 (36 Proyek)', avatar: 'SR', desc: 'Ahli dalam membuat skrip dan editing konten hiburan yang viral serta visualisasi ide edukatif.', portfolio: ['Konten Menghibur Lucu', 'Informatif Infografis', 'Podcast Short Clip'] },
@@ -433,25 +440,32 @@
 
             const iconEl = document.getElementById('auth-role-icon');
             const titleEl = document.getElementById('auth-title');
+            const switchContainer = document.getElementById('auth-switch-container');
 
             if (role === 'editor') {
                 iconEl.className = 'w-14 h-14 rounded-2xl bg-brand-600 text-white text-2xl font-bold flex items-center justify-center mx-auto mb-3 shadow-lg';
                 iconEl.innerHTML = '<i class="fa-solid fa-laptop-code"></i>';
                 titleEl.textContent = 'Portal Editor';
+                switchContainer.classList.remove('hidden');
             } else if (role === 'customer') {
                 iconEl.className = 'w-14 h-14 rounded-2xl bg-emerald-600 text-white text-2xl font-bold flex items-center justify-center mx-auto mb-3 shadow-lg';
                 iconEl.innerHTML = '<i class="fa-solid fa-briefcase"></i>';
                 titleEl.textContent = 'Portal Customer';
+                switchContainer.classList.remove('hidden');
             } else {
+                // TAMPILAN PORTAL ADMIN (TIDAK BISA REGISTER)
                 iconEl.className = 'w-14 h-14 rounded-2xl bg-amber-600 text-white text-2xl font-bold flex items-center justify-center mx-auto mb-3 shadow-lg';
                 iconEl.innerHTML = '<i class="fa-solid fa-user-shield"></i>';
-                titleEl.textContent = 'Portal Admin';
+                titleEl.textContent = 'Portal Khusus Admin';
+                switchContainer.classList.add('hidden'); // Sembunyikan opsi daftar akun admin
             }
             document.getElementById('field-name-container').classList.add('hidden');
+            document.getElementById('auth-error').classList.add('hidden');
             document.getElementById('form-auth').reset();
         }
 
         function toggleAuthMode() {
+            if (currentRole === 'admin') return; // Admin tidak boleh register akun baru
             isRegisterMode = !isRegisterMode;
             const nameContainer = document.getElementById('field-name-container');
             const submitBtn = document.getElementById('auth-submit-btn');
@@ -478,10 +492,25 @@
 
         function handleAuthSubmit(e) {
             e.preventDefault();
-            const email = document.getElementById('auth-email').value;
-            const password = document.getElementById('auth-password').value;
-            const name = document.getElementById('auth-name').value;
+            const email = document.getElementById('auth-email').value.trim();
+            const password = document.getElementById('auth-password').value.trim();
+            const name = document.getElementById('auth-name').value.trim();
             const errEl = document.getElementById('auth-error');
+            errEl.classList.add('hidden');
+
+            // HAK AKSES KHUSUS ADMIN
+            if (currentRole === 'admin') {
+                if (email === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.password) {
+                    activeUser = { name: ADMIN_CREDENTIALS.name, email: ADMIN_CREDENTIALS.email };
+                    localStorage.setItem('akt_session', JSON.stringify({ role: 'admin', user: activeUser }));
+                    initAppScreen();
+                    return;
+                } else {
+                    errEl.textContent = 'Akses Ditolak: Hanya Admin Resmi yang dapat masuk.';
+                    errEl.classList.remove('hidden');
+                    return;
+                }
+            }
 
             let users = JSON.parse(localStorage.getItem(`akt_users_${currentRole}`) || '[]');
 
@@ -503,9 +532,6 @@
             if (!foundUser && currentRole === 'editor') {
                 const mock = MOCK_EDITORS.find(m => m.email === email);
                 if (mock) foundUser = { name: mock.name, email: mock.email };
-            }
-            if (!foundUser && currentRole === 'admin') {
-                foundUser = { name: 'Admin Verifikator', email: email };
             }
 
             if (!foundUser) {
