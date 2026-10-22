@@ -446,7 +446,7 @@
                 iconEl.className = 'w-14 h-14 rounded-2xl bg-brand-600 text-white text-2xl font-bold flex items-center justify-center mx-auto mb-3 shadow-lg';
                 iconEl.innerHTML = '<i class="fa-solid fa-laptop-code"></i>';
                 titleEl.textContent = 'Portal Editor';
-                switchContainer.classList.remove('hidden');
+                switchContainer.classList.add('hidden'); // <-- DIUBAH MENJADI HIDDEN AGAR TIDAK BISA REGISTER
             } else if (role === 'customer') {
                 iconEl.className = 'w-14 h-14 rounded-2xl bg-emerald-600 text-white text-2xl font-bold flex items-center justify-center mx-auto mb-3 shadow-lg';
                 iconEl.innerHTML = '<i class="fa-solid fa-briefcase"></i>';
@@ -465,8 +465,8 @@
         }
 
         function toggleAuthMode() {
-            if (currentRole === 'admin') return; // Admin tidak boleh register akun baru
-            isRegisterMode = !isRegisterMode;
+            if (currentRole === 'admin' || currentRole === 'editor') return; // Admin & Editor tidak boleh register akun baru
+                isRegisterMode = !isRegisterMode;
             const nameContainer = document.getElementById('field-name-container');
             const submitBtn = document.getElementById('auth-submit-btn');
 
@@ -533,6 +533,21 @@
                 const mock = MOCK_EDITORS.find(m => m.email === email);
                 if (mock) foundUser = { name: mock.name, email: mock.email };
             }
+
+            if (currentRole === 'editor') {
+    const foundMockEditor = MOCK_EDITORS.find(m => m.email === email);
+    // Anda bisa menentukan password bebas untuk editor, atau menyamakannya (misal: "editor123" atau tanpa cek password ketat)
+    if (foundMockEditor) {
+        activeUser = { name: foundMockEditor.name, email: foundMockEditor.email };
+        localStorage.setItem('akt_session', JSON.stringify({ role: 'editor', user: activeUser }));
+        initAppScreen();
+        return;
+    } else {
+        errEl.textContent = 'Email Editor tidak terdaftar dalam sistem resmi.';
+        errEl.classList.remove('hidden');
+        return;
+    }
+}
 
             if (!foundUser) {
                 errEl.textContent = 'Email atau password salah.';
