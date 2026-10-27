@@ -377,10 +377,34 @@
         };
 
         const MOCK_EDITORS = [
-            { email: 'editor1@aktivitasdigital.id', name: 'Ignatius Saddhu Kinali Pikatan', role: 'Specialist graphic design, branding, dan typography.', rating: '4.8 (38 Proyek)', avatar: 'RP', desc: 'Berpengalaman di bidang graphic design, branding, dan typography.', portfolio: ['Proses Branding (pembuatan logo)', 'Pembuatan poster', 'Showcase Portofolio'] },
-            { email: 'editor2@aktivitasdigital.id', name: 'Enos Yudha Prasetya', role: 'desain tata letak, ilustrasi semi-realistis, dan pengembangan karakter untuk maskot, branding, dan kampanye.', rating: '4.9 (46 Proyek)', avatar: 'SR', desc: 'Berpengalaman dalam desain tata letak, ilustrasi semi-realistis, dan pengembangan karakter untuk maskot, branding, dan kampanye.', portfolio: ['Konten Menghibur Lucu', 'Kampanye Visual (konten cerita pendek)', 'Konten Short Clip'] },
-            { email: 'editor3@aktivitasdigital.id', name: 'Gregorius Diaz', role: 'konten berdurasi pendek seperti TikTok dan Instagram Reels.', rating: '5.0 (52 Proyek)', avatar: 'DA', desc: 'Berpengalaman sebagai editor video, khususnya untuk konten berdurasi pendek seperti TikTok dan Instagram Reels.', portfolio: ['Brand Storytelling Video TikTok', 'Konten Promosi Instagram', 'Inspirational Reels'] }
-        ];
+    { 
+        email: 'editor1@aktivitasdigital.id', 
+        name: 'Ignatius Saddhu Kinali Pikatan', 
+        role: 'Specialist graphic design, branding, dan typography.', 
+        rating: '4.8 (38 Proyek)', 
+        avatar: 'assets/fotosaddhu.jpeg', // Ganti inisial 'RP' dengan path gambar
+        desc: 'Berpengalaman di bidang graphic design, branding, dan typography.', 
+        portfolio: ['Proses Branding (pembuatan logo)', 'Pembuatan poster', 'Showcase Portofolio'] 
+    },
+    { 
+        email: 'editor2@aktivitasdigital.id', 
+        name: 'Enos Yudha Prasetya', 
+        role: 'desain tata letak, ilustrasi semi-realistis, dan pengembangan karakter untuk maskot, branding, dan kampanye.', 
+        rating: '4.9 (46 Proyek)', 
+        avatar: 'assets/fotoenos.jpeg', // Ganti inisial 'SR' dengan path gambar
+        desc: 'Berpengalaman dalam desain tata letak, ilustrasi semi-realistis, dan pengembangan karakter untuk maskot, branding, dan kampanye.', 
+        portfolio: ['Konten Menghibur Lucu', 'Kampanye Visual (konten cerita pendek)', 'Konten Short Clip'] 
+    },
+    { 
+        email: 'editor3@aktivitasdigital.id', 
+        name: 'Gregorius Diaz', 
+        role: 'konten berdurasi pendek seperti TikTok dan Instagram Reels.', 
+        rating: '5.0 (52 Proyek)', 
+        avatar: 'assets/fotodiaz.jpeg', // Ganti inisial 'DA' dengan path gambar
+        desc: 'Berpengalaman sebagai editor video, khususnya untuk konten berdurasi pendek seperti TikTok dan Instagram Reels.', 
+        portfolio: ['Brand Storytelling Video TikTok', 'Konten Promosi Instagram', 'Inspirational Reels'] 
+    }
+];
 
         let currentRole = null;
         let isRegisterMode = false;
@@ -561,23 +585,23 @@
         }
 
         function initAppScreen() {
-            document.getElementById('view-role-selector').classList.add('hidden');
-            document.getElementById('view-auth').classList.add('hidden');
-            document.getElementById('user-badge-container').classList.remove('hidden');
-            document.getElementById('current-user-name').textContent = `${activeUser.name} (${currentRole.toUpperCase()})`;
-
-            if (currentRole === 'editor') {
-                document.getElementById('view-editor-dashboard').classList.remove('hidden');
-                renderEditorDashboard();
-            } else if (currentRole === 'customer') {
-                document.getElementById('view-customer-dashboard').classList.remove('hidden');
-                renderCustomerPortfolio();
-                switchCustomerTab('portfolio');
-            } else if (currentRole === 'admin') {
-                document.getElementById('view-admin-dashboard').classList.remove('hidden');
-                renderAdminDashboard();
-            }
-        }
+    document.getElementById('view-role-selector').classList.add('hidden');
+    document.getElementById('view-auth').classList.add('hidden');
+    document.getElementById('user-badge-container').classList.remove('hidden');
+    document.getElementById('current-user-name').textContent = `${activeUser.name} (${currentRole.toUpperCase()})`;
+    
+    if (currentRole === 'editor') {
+        document.getElementById('view-editor-dashboard').classList.remove('hidden');
+        renderEditorDashboard();
+    } else if (currentRole === 'customer') {
+        document.getElementById('view-customer-dashboard').classList.remove('hidden');
+        renderCustomerPortfolio(); // <-- WAJIB ADA AGAR DAFTAR EDITOR MUNCUL OTOMATIS
+        switchCustomerTab('portfolio');
+    } else if (currentRole === 'admin') {
+        document.getElementById('view-admin-dashboard').classList.remove('hidden');
+        renderAdminDashboard();
+    }
+}
 
         function logoutSession() {
             localStorage.removeItem('akt_session');
@@ -637,32 +661,38 @@
 
         // --- CUSTOMER DASHBOARD ---
         function renderCustomerPortfolio() {
-            const gridEl = document.getElementById('editors-portfolio-grid');
-            gridEl.innerHTML = MOCK_EDITORS.map(ed => `
-                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm flex flex-col justify-between p-6">
+    const gridEl = document.getElementById('editors-portfolio-grid');
+    if (!gridEl) return; // Mencegah error jika elemen belum siap
+
+    gridEl.innerHTML = MOCK_EDITORS.map(ed => `
+        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm flex flex-col justify-between p-6">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <!-- AVATAR GAMBAR DIKUNCI UKURANNYA AGAR SERAGAM -->
+                    <img src="${ed.avatar}" alt="${ed.name}" 
+                         class="rounded-full object-cover shrink-0 border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800"
+                         style="width: 56px; height: 56px; min-width: 56px; min-height: 56px;"
+                         onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(ed.name)}&background=7c3aed&color=fff';">
                     <div>
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 font-bold flex items-center justify-center">${ed.avatar}</div>
-                            <div>
-                                <h4 class="font-bold text-base">${ed.name}</h4>
-                                <span class="text-xs text-brand-600 font-medium">${ed.role}</span>
-                            </div>
-                        </div>
-                        <p class="text-xs text-slate-500 mb-4 leading-relaxed">${ed.desc}</p>
-                        <div class="space-y-1 mb-4">
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Spesialisasi Konten:</span>
-                            <ul class="text-xs text-slate-600 dark:text-slate-300 list-disc list-inside">
-                                ${ed.portfolio.map(item => `<li>${item}</li>`).join('')}
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                        <span class="text-xs font-semibold text-emerald-600"><i class="fa-solid fa-star mr-1"></i>${ed.rating}</span>
-                        <button onclick="openProjectModal('${ed.email}', '${ed.name}')" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold shadow-md transition-all">Pilih & Buat Proyek</button>
+                        <h4 class="font-bold text-base text-slate-900 dark:text-slate-100">${ed.name}</h4>
+                        <span class="text-xs text-brand-600 dark:text-brand-400 font-medium block">${ed.role}</span>
                     </div>
                 </div>
-            `).join('');
-        }
+                <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 leading-relaxed">${ed.desc}</p>
+                <div class="space-y-1 mb-4">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Spesialisasi Konten:</span>
+                    <ul class="text-xs text-slate-600 dark:text-slate-300 list-disc list-inside">
+                        ${ed.portfolio.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                <span class="text-xs font-semibold text-emerald-600"><i class="fa-solid fa-star mr-1"></i>${ed.rating}</span>
+                <button onclick="openProjectModal('${ed.email}', '${ed.name}')" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold shadow-md transition-all">Pilih & Buat Proyek</button>
+            </div>
+        </div>
+    `).join('');
+}
 
         function switchCustomerTab(tab) {
             const tabPort = document.getElementById('customer-tab-portfolio');
